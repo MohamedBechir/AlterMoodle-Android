@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
+
         >
 
         <EditText
@@ -26,6 +27,7 @@
             android:layout_height="wrap_content"
             android:hint="Enter Your Email"
             android:inputType="textEmailAddress"
+
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -44,9 +46,10 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
+        android:id="@+id/login"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/primarybst"
         android:textColor="@color/logintxt"
         android:layout_marginTop="5dp"
         android:text="Login"/>
@@ -63,6 +66,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Forgot Password?"
+            android:clickable="true"
+            android:textColor="@color/primarybst"
             android:textSize="17dp"
             />
          <TextView
@@ -71,6 +76,8 @@
              android:layout_height="wrap_content"
              android:layout_marginLeft="10dp"
              android:text="I don't have an account"
+             android:clickable="true"
+             android:textColor="@color/primarybst"
              android:textSize="17dp"
              />
 

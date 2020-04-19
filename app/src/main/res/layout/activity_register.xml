@@ -47,7 +47,7 @@
         android:id="@+id/next"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryDark"
+        android:background="@color/primarybst"
         android:textColor="@color/logintxt"
         android:layout_marginTop="5dp"
         android:text="Next"/>
@@ -64,6 +64,8 @@
             android:id="@+id/haveAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:clickable="true"
+            android:textColor="@color/primarybst"
             android:text="Already have an account?"
             android:textSize="17dp"
             />
