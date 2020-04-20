@@ -1,36 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item android:id="@+id/nav_alter"
-        android:title="AlterMoodle"
-        android:icon="@drawable/ic_menu_black_24dp"
-        app:showAsAction="always"
-        />
-    <item android:id="@+id/nav_dashbord"
-        android:title="Dashbord"
-        android:icon="@drawable/ic_home_black_24dp"
-        app:showAsAction="always"
-        />
-    <item android:id="@+id/nav_stats"
-        android:title="Stats"
-        android:icon="@drawable/ic_trending_down_black_24dp"
-        app:showAsAction="always"
-        />
-    <item android:id="@+id/nav_todo"
-        android:title="TODO"
-        android:icon="@drawable/ic_list_black_24dp"
-        app:showAsAction="always"
-        />
-    <item android:id="@+id/nav_editor"
-        android:title="Editor"
-        android:icon="@drawable/ic_edit_black_24dp"
-        app:showAsAction="always"
-        />
-    <item android:id="@+id/nav_account"
-        android:title="Account"
-        android:icon="@drawable/ic_person_outline_black_24dp"
-        app:showAsAction="always"
-        />
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_dashbord"
+            android:icon="@drawable/ic_home_black_24dp"
+            android:title="Dashbord"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/nav_stats"
+            android:icon="@drawable/ic_trending_down_black_24dp"
+            android:title="Stats"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/nav_todo"
+            android:icon="@drawable/ic_list_black_24dp"
+            android:title="TODO"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/nav_editor"
+            android:icon="@drawable/ic_edit_black_24dp"
+            android:title="Editor"
+            app:showAsAction="always" />
+        <item
+            android:id="@+id/nav_account"
+            android:icon="@drawable/ic_person_outline_black_24dp"
+            android:title="Account"
+            app:showAsAction="always" />
+
+    </group>
+    s
 
 
 </menu>
