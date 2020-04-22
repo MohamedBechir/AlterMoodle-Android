@@ -1,10 +1,6 @@
-package com.example.cs425;
-
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.cs425.activities;
 
 import android.content.Intent;
-import android.nfc.Tag;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -13,16 +9,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.cs425.LoginResponse;
+import com.example.cs425.R;
+import com.example.cs425.Requests;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
-
 import okhttp3.OkHttpClient;
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -43,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         textView.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               Intent intent = new Intent(MainActivity.this,RegisterActivity.class);
+               Intent intent = new Intent(MainActivity.this, RegisterActivity.class);
                startActivity(intent);
            }
        });
@@ -72,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-                Log.d(TAG,"user is : "+ obj);
 
                 //Credentials user = new Credentials(email,password);
                 Call<LoginResponse> CallableResponse = service.LoginUser(obj);
@@ -80,12 +75,18 @@ public class MainActivity extends AppCompatActivity {
                 CallableResponse.enqueue(new Callback<LoginResponse>() {
                     @Override
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
-                        if (response.code()==200){
-                            Intent intent = new Intent(MainActivity.this,DashboardActivity.class );
+                      if (response.code()==200){
+                          try {
+                              Log.d(TAG, "User credentials are : " + response.body().formattedResult());
+                          } catch (JSONException e) {
+                              e.printStackTrace();
+                          }
+                          Intent intent = new Intent(MainActivity.this, DashboardActivity.class );
                             startActivity(intent);
                         }else {
-                        Toast.makeText(MainActivity.this,"Wrong credentials",Toast.LENGTH_LONG).show();
-                    }}
+                          Log.d(TAG, "Wrong credentials ");
+
+                      }}
 
                     @Override
                     public void onFailure(Call<LoginResponse> call, Throwable t) {

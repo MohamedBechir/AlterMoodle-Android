@@ -11,10 +11,10 @@
         android:supportsRtl="true"
         android:usesCleartextTraffic="true"
         android:theme="@style/AppTheme.NoActionBar">
-        <activity android:name=".DashboardActivity"></activity>
-        <activity android:name=".RegisterFinalActivity" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".activities.DashboardActivity"></activity>
+        <activity android:name=".activities.RegisterFinalActivity" />
+        <activity android:name=".activities.RegisterActivity" />
+        <activity android:name=".activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

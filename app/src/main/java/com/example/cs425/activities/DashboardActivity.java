@@ -1,11 +1,13 @@
-package com.example.cs425;
+package com.example.cs425.activities;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
-import android.os.Bundle;
+import com.example.cs425.R;
 
 public class DashboardActivity extends AppCompatActivity {
     private DrawerLayout drawer;

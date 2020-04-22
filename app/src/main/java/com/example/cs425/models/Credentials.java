@@ -1,4 +1,4 @@
-package com.example.cs425;
+package com.example.cs425.models;
 
 public class Credentials {
 
