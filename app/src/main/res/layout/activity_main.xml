@@ -14,8 +14,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:src="@drawable/atlermoodlev2"/>
-
+    <TextView
+        android:id="@+id/erremail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/colorerror"
+        android:textSize="15dp"
+        />
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/hello"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
@@ -28,7 +35,6 @@
             android:layout_height="wrap_content"
             android:hint="Enter Your Email"
             android:inputType="textEmailAddress"
-
             />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -53,8 +59,9 @@
         android:layout_height="wrap_content"
         android:background="@color/primarybst"
         android:textColor="@color/logintxt"
-        android:layout_marginTop="5dp"
-        android:text="Login"/>
+        android:layout_marginTop="8dp"
+        android:text="Login"
+        />
 
     <LinearLayout
         android:layout_width="match_parent"

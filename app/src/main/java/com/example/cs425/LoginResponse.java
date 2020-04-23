@@ -76,7 +76,7 @@ public class LoginResponse {
         this.userToken = userToken;
     }
 
-   /* @SerializedName("success")
+   @SerializedName("success")
     @Expose
     private Boolean success;
     @SerializedName("message")
@@ -98,12 +98,13 @@ public class LoginResponse {
     public void setMessage(String message) {
         this.message = message;
     }
-    public JSONObject handleErrors () throws JSONException {
+
+    public JSONObject errorBody () throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("success", getSuccess());
         obj.put("message", getMessage());
         return obj;
-    }*/
+    }
 
     public JSONObject formattedResult () throws JSONException {
         JSONObject obj = new JSONObject();
