@@ -99,12 +99,7 @@ public class LoginResponse {
         this.message = message;
     }
 
-    public JSONObject errorBody () throws JSONException {
-        JSONObject obj = new JSONObject();
-        obj.put("success", getSuccess());
-        obj.put("message", getMessage());
-        return obj;
-    }
+
 
     public JSONObject formattedResult () throws JSONException {
         JSONObject obj = new JSONObject();

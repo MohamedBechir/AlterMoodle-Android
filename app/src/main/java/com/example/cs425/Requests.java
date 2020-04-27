@@ -12,4 +12,8 @@ import retrofit2.http.POST;
 public interface Requests {
     @POST ("login")
     Call<LoginResponse> LoginUser (@Body JSONObject object);
+
+
+    @POST ("signup")
+    Call<registerResponse> registerUser (@Body JSONObject object);
 }

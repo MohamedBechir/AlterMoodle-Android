@@ -15,13 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.cs425.LoginResponse;
 import com.example.cs425.R;
 import com.example.cs425.Requests;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.regex.Pattern;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -39,9 +36,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         EditText email1 = (EditText) findViewById(R.id.email);
         EditText password1 = (EditText) findViewById(R.id.password);
-        TextView erremail = (TextView) findViewById(R.id.erremail);
+        TextView errorLogin = (TextView) findViewById(R.id.error);
 
-        //Create Account
+        //Move to sign up activity
         TextView textView = (TextView) findViewById(R.id.register);
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,6 +47,9 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+
+        //Login verification and go to dahsbord
         Button button = (Button) findViewById(R.id.login);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,6 +72,7 @@ public class MainActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                Log.d(TAG,"entered credentials are : "+ obj);
 
                 //Credentials user = new Credentials(email,password);
                 Call<LoginResponse> CallableResponse = service.LoginUser(obj);
@@ -88,8 +89,8 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
                         } else {
                             try {
-                                JSONObject jObjError = new JSONObject(response.errorBody().string());
-                                erremail.setText(jObjError.getString("message") + "*");
+                                JSONObject JSONError = new JSONObject(response.errorBody().string());
+                                errorLogin.setText(JSONError.getString("message") + "*");
                             } catch (Exception e) {
                                 Toast.makeText(MainActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                             }
