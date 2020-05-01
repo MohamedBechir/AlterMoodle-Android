@@ -11,17 +11,15 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cs425.R;
-import com.example.cs425.Requests;
-import com.example.cs425.registerResponse;
+import com.example.cs425.models.registerResponse;
+import com.example.cs425.models.retrofitRequest;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class RegisterFinalActivity extends AppCompatActivity {
 
@@ -32,7 +30,6 @@ public class RegisterFinalActivity extends AppCompatActivity {
         setContentView(R.layout.activity_register_final);
 
         //Create a link for the button register
-        Log.d("TAG", "intent is : " + getIntent().getExtras().describeContents());
         String firstName1 = getIntent().getStringExtra("firstName");
         String lastName1 = getIntent().getStringExtra("lastName");
         TextView email = (TextView) findViewById(R.id.emailR);
@@ -47,16 +44,7 @@ public class RegisterFinalActivity extends AppCompatActivity {
                 String email1 = email.getText().toString();
                 String password1 = password.getText().toString();
                 String moodleToken1 = moodleToken.getText().toString();
-
-                OkHttpClient okHttpClient = new OkHttpClient();
-                Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
-                        .baseUrl("http://10.0.2.2:3000/api/user/")
-                        .addConverterFactory(GsonConverterFactory.create())
-                        .client(okHttpClient);
-                Retrofit retrofit = retrofitBuilder.build();
-                Requests service = retrofit.create(Requests.class);
                 JSONObject obj = new JSONObject();
-
                 try {
                     obj.put("firstName", firstName1);
                     obj.put("lastName", lastName1);
@@ -66,8 +54,11 @@ public class RegisterFinalActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+                retrofitRequest request = new retrofitRequest();
+                Call<registerResponse> CallableResponse = request
+                        .retrofitRequest("http://10.0.2.2:3000/api/user/")
+                        .registerUser(obj);
 
-                Call<registerResponse> CallableResponse = service.registerUser(obj);
                 CallableResponse.enqueue(new Callback<registerResponse>() {
                     @Override
                     public void onResponse(Call<registerResponse> call, Response<registerResponse> response) {
@@ -78,14 +69,12 @@ public class RegisterFinalActivity extends AppCompatActivity {
                             try {
                                 JSONObject JSONError = new JSONObject(response.errorBody().string());
                                 String err = JSONError.getString("message");
-                                Log.d("TAG", "json is " + err);
                                 errorRegister.setText(JSONError.getString("message") + "*");
                             } catch (Exception e) {
                                 Toast.makeText(RegisterFinalActivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
                             }
                         }
                     }
-
                     @Override
                     public void onFailure(Call<registerResponse> call, Throwable t) {
                         Log.d("TAG", t.getMessage());

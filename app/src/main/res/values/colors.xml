@@ -7,4 +7,5 @@
     <color name="primarybst">#0275d8</color>
     <color name="colordashbord">#0F273E</color>
     <color name="colorerror">#FF0000</color>
+    <color name="black">#000000</color>
 </resources>

@@ -1,10 +1,11 @@
 package com.example.cs425;
 
+import com.example.cs425.models.LoginResponse;
+import com.example.cs425.models.registerResponse;
 import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
@@ -16,4 +17,5 @@ public interface Requests {
 
     @POST ("signup")
     Call<registerResponse> registerUser (@Body JSONObject object);
+
 }

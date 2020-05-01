@@ -1,4 +1,4 @@
-package com.example.cs425;
+package com.example.cs425.models;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -104,8 +104,7 @@ public class LoginResponse {
     public JSONObject formattedResult () throws JSONException {
         JSONObject obj = new JSONObject();
         obj.put("email", getEmail());
-        obj.put("firstName", getFirstName());
-        obj.put("lastName", getLastName());
+        obj.put("fullName", getFirstName()+" "+getLastName());
         obj.put("moodleToken", getMoodleToken());
         obj.put("courses", getCourses());
         obj.put("userToken", getUserToken());

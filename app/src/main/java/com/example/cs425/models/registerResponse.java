@@ -1,10 +1,9 @@
-package com.example.cs425;
+package com.example.cs425.models;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import org.json.JSONException;
-import org.json.JSONObject;
+
 
 public class registerResponse {
     @SerializedName("success")
