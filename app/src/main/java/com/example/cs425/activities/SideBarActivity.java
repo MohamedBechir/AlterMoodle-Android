@@ -52,6 +52,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
 
         //Drawer layout
         Toolbar toolbar = findViewById(R.id.toolbar);
+        toolbar.setTitle(R.string.toolbar);
         setSupportActionBar(toolbar);
         drawerLayout = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -59,7 +60,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,
                 R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
-        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.colordashbord));
+        toggle.getDrawerArrowDrawable().setColor(getResources().getColor(R.color.logintxt));
         toggle.syncState();
 
 
