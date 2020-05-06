@@ -42,10 +42,10 @@
             android:textSize="20dp"
             app:fontFamily="@font/lato_bold" />
         <TextView
+            android:id="@+id/fullName"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/rectangle"
-            android:text="Bechir Jamoussi"
             android:textColor="@color/black"
             android:textSize="15dp"
             app:fontFamily="@font/lato_bold"            android:layout_marginLeft="45dp"
@@ -65,18 +65,19 @@
             app:fontFamily="@font/lato_bold"
             />
         <TextView
+            android:id="@+id/emailfld"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/rectangle"
             android:layout_marginLeft="45dp"
             android:layout_marginRight="45dp"
-            android:text="mohamedbechir.jamoussi@medtech.tn"
            android:textSize="15dp"
             app:fontFamily="@font/lato_bold"
             android:textColor="@color/black"
             android:gravity="center"
             android:layout_marginTop="10dp"
             />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -88,6 +89,7 @@
             app:fontFamily="@font/lato_bold"
             />
         <TextView
+            android:id="@+id/moodleTokenfld"
             android:layout_width="match_parent"
             android:layout_height="45dp"
             android:background="@drawable/rectangle"
@@ -95,7 +97,6 @@
             android:layout_marginRight="45dp"
             android:textColor="@color/black"
             app:fontFamily="@font/lato_bold"
-            android:text="9a7cc9446e2d8b05e4b5cc4616104c31"
             android:textSize="15dp"
             android:gravity="center"
             android:layout_marginTop="10dp"

@@ -1,6 +1,8 @@
 package com.example.cs425.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,12 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
-import com.example.cs425.fragments.DashbordFragment;
-import com.example.cs425.fragments.ProfileFragment;
+
 import com.example.cs425.models.LoginResponse;
 import com.example.cs425.models.retrofitRequest;
 import com.example.cs425.R;
@@ -33,6 +31,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = "Error";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -77,7 +76,13 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
                         if (response.code() == 200) {
                             try {
-                                Intent intent = new Intent(MainActivity.this, SideBarActivity.class);
+                                SharedPreferences preferences = getSharedPreferences("CS425",MODE_PRIVATE);
+                                preferences.edit()
+                                        .putString("JWT_TOKEN",response.body().formattedResult().getString("userToken"))
+                                        .apply();
+                                Log.d("HHHHHHH","hhhh"+preferences.getString("JWT_TOKEN","null"));
+
+                               Intent intent = new Intent(MainActivity.this, SideBarActivity.class);
                                 intent.putExtra("fullName",response.body().formattedResult()
                                         .getString("fullName"));
                                 intent.putExtra("email",response.body().formattedResult()
