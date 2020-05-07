@@ -3,38 +3,41 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/parent_layout"
+    >
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_margin="5dp"
         android:elevation="16dp"
-        android:background="@drawable/shadow"
+        android:id="@+id/card"
         >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
+            android:background="@drawable/shadow"
             >
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Global software development"
                 android:layout_gravity="center"
                 android:textColor="@color/black"
                 app:fontFamily="@font/lato_bold"
+                android:id="@+id/helloworld"
                 />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="CS350"
                 android:textColor="@color/black"
                 app:fontFamily="@font/lato_bold"
+                android:id="@+id/course_name"
                 />
             <Button
                 android:layout_width="match_parent"
@@ -42,6 +45,7 @@
                 android:background="@color/primarybst"
                 android:textColor="@color/logintxt"
                 android:text="Check assignments"
+                android:id="@+id/button"
                 />
 
         </LinearLayout>

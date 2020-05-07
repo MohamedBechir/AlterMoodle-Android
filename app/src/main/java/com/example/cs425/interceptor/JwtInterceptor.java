@@ -8,8 +8,6 @@ import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class JwtInterceptor {
 
@@ -24,12 +22,5 @@ public class JwtInterceptor {
             }
         });
 
-        /*Retrofit.Builder retrofitBuilder = new Retrofit.Builder()
-                .baseUrl(baseUrl)
-                .addConverterFactory(GsonConverterFactory.create())
-                .client(okhtttpBuilder.build());
-        Retrofit retrofit = retrofitBuilder.build();
-        Requests service = retrofit.create(Requests.class);
-        return service;*/
     }
 }
