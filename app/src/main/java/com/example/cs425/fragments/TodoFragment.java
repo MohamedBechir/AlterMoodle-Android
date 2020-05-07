@@ -68,7 +68,6 @@ private ArrayList<String> coursesIds = new ArrayList<>() ;
 private void initCourses (View view){
     SharedPreferences preferences = getActivity().getSharedPreferences("CS425", Context.MODE_PRIVATE);
     String retrivedToken  = preferences.getString("JWT_TOKEN",null);
-    //Log.d("TOKEN","this is the token : "+retrivedToken);
     retrofitRequest request = new retrofitRequest();
     Call<List<AssignmentResponse>> CallableResponse = request
             .retrofitRequest("http://10.0.2.2:3000/api/moodle/")
@@ -92,11 +91,8 @@ private void initCourses (View view){
 
     private  void initRecyclerView(View view, ArrayList<String> coursesNames, ArrayList<String> coursesIds) {
         RecyclerView recyclerView = view.findViewById(R.id.recycler_view);
-        //Log.d(TAG, "initRecyclerView: "+ recyclerView);
-
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(coursesNames, coursesIds, getActivity());
         recyclerView.setAdapter(adapter);
-        //Log.d(TAG, "initRecyclerView: "+ (view.getContext().toString()));
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }
 

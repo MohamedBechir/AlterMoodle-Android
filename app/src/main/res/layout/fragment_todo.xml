@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".fragments.TodoFragment"
     android:background="@color/logintxt"
+    android:paddingTop="40dp"
+    android:layout_marginRight="15dp"
+    android:layout_marginLeft="15dp"
     >
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"

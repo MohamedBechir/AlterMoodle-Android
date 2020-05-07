@@ -30,7 +30,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.d("onCreateViewHolder", "onCreateViewHolder: called.");
+        Log.d(TAG, "onCreateViewHolder: called");
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_items,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -38,14 +38,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Log.d("onBindViewHolder", "onBindViewHolder: called.");
        holder.courseid.setText(coursesIds.get(position));
        holder.coursename.setText(coursesIds.get(position));
     }
 
     @Override
     public int getItemCount() {
-        Log.d("Count", "items: called.");
 
         return coursesIds.size();
     }
