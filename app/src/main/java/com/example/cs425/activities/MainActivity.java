@@ -1,6 +1,5 @@
 package com.example.cs425.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -80,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
                                 preferences.edit()
                                         .putString("JWT_TOKEN",response.body().formattedResult().getString("userToken"))
                                         .apply();
-                                Log.d("HHHHHHH","hhhh"+preferences.getString("JWT_TOKEN","null"));
 
                                Intent intent = new Intent(MainActivity.this, SideBarActivity.class);
                                 intent.putExtra("fullName",response.body().formattedResult()

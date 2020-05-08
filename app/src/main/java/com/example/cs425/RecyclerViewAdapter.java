@@ -30,7 +30,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.d(TAG, "onCreateViewHolder: called");
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_items,parent,false);
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -52,6 +51,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         TextView courseid;
         TextView coursename;
 
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
              courseid = (TextView) itemView.findViewById(R.id.helloworld);
@@ -59,5 +59,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             Button button = itemView.findViewById(R.id.button);
             LinearLayout parentLayout = itemView.findViewById(R.id.parent_layout);
         }
+    }
+    public interface OnCourseListener{
+        void onCourseClick(int position);
     }
 }

@@ -2,6 +2,7 @@ package com.example.cs425.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -27,11 +28,16 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
     String fullName;
     String email;
     String moodleToken;
+    private static final String TAG = "SideBarActivity";
 
 
     @Override
     protected void onCreate(Bundle  savedInstanceState) {
+        Log.d(TAG, "onCreate: called");
         super.onCreate(savedInstanceState);
+        FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
+        tx.replace(R.id.fragment_container, new DashbordFragment());
+        tx.commit();
         setContentView(R.layout.sidebar_dashboard);
         getWindow().getDecorView().setBackgroundColor(Color.WHITE);
 
@@ -43,9 +49,6 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
          fullName = getIntent().getStringExtra("fullName");
          email = getIntent().getStringExtra("email");
          moodleToken = getIntent().getStringExtra("moodleToken");
-        //Log.d("TAG", "fullName is : "+ fullName);
-        //Log.d("TAG", "email is : "+ email);
-        //Log.d("TAG", "moodleToken is : "+ moodleToken);
 
         //Create bundle to send user info to profileFragment
 
@@ -64,10 +67,10 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         toggle.syncState();
 
 
-        if(savedInstanceState == null) {
+       /* if(savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashbordFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_dashbord);
-        }
+        }*/
     }
 
     @Override
