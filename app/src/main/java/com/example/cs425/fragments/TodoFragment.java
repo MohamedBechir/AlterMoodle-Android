@@ -1,6 +1,5 @@
 package com.example.cs425.fragments;
 
-import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -31,22 +30,19 @@ import retrofit2.Response;
 
 
 public class TodoFragment extends Fragment implements RecyclerViewAdapter.OnCourseListener {
+
     private static final String TAG = "TodoFragment";
-    public static final String courseKey = "COURSES";
     public static final String coursesSettingsKey = "PREFS";
-    public static final String JWTKey = "PREFS";
-    public static final String JWTSettingsKey = "PREFS";
+    public static final String courseKey = "COURSES";
+    public static final String JWTSettingsKey = "CS425";
+    public static final String JWTKey = "JWT_TOKEN";
 
     CoursesAssignments coursesAssignments = new CoursesAssignments();
 
     private ArrayList<String> coursesNames = new ArrayList<>();
     private ArrayList<String> coursesIds = new ArrayList<>();
 
-
-
-
-
-RecyclerView recyclerView;
+    RecyclerView recyclerView;
 
 
     public TodoFragment() {
@@ -69,22 +65,20 @@ RecyclerView recyclerView;
 
 
     public void initCourses (View view){
-        coursesAssignments.getPreferencesData(getActivity(),JWTSettingsKey,JWTKey);
-        SharedPreferences Tokenpreferences = getActivity().getSharedPreferences("CS425", Context.MODE_PRIVATE);
-        String retrivedToken  = Tokenpreferences.getString("JWT_TOKEN",null);
+        String retriedToken =coursesAssignments.getPreferencesData(getActivity(),JWTSettingsKey,JWTKey);
         retrofitRequest request = new retrofitRequest();
         Call<List<AssignmentResponse>> CallableResponse = request
                 .retrofitRequest("http://10.0.2.2:3000/api/moodle/")
-                .getAssignments(retrivedToken);
+                .getAssignments(retriedToken);
 
         CallableResponse.enqueue(new Callback<List<AssignmentResponse>>() {
             @Override
             public void onResponse(Call<List<AssignmentResponse>> call, Response<List<AssignmentResponse>> response) {
 
+                //Saves courses and assignments info in the sharedPreferences
                 SharedPreferences settings = getActivity().getSharedPreferences(coursesSettingsKey,0);
                 SharedPreferences.Editor editor = settings.edit();
-                Gson gson = new Gson();
-                String s = gson.toJson(response.body());
+                String s = new Gson().toJson(response.body());
                 editor.putString("COURSES", s);
                 editor.apply();
 
@@ -101,6 +95,7 @@ RecyclerView recyclerView;
         });
     }
 
+    //Initiates the Recycler View
     public   void initRecyclerView(View view, ArrayList<String> coursesNames, ArrayList<String> coursesIds) {
         recyclerView = view.findViewById(R.id.recycler_view);
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(coursesNames, coursesIds, getActivity());

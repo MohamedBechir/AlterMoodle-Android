@@ -18,7 +18,7 @@ import retrofit2.Callback;
 
 public class CoursesAssignments {
 
-
+    //Converts Json String array to an ArrayList
 
     public ArrayList<AssignmentResponse> convertToList(String coursesAssingments){
         ArrayList<AssignmentResponse> coursesAssingmentsList = new Gson().
@@ -26,6 +26,7 @@ public class CoursesAssignments {
         return coursesAssingmentsList;
     }
 
+    //Gets the courses IDs
     public ArrayList<String> getCoursesID (Activity activity, String settingsKey, String courseKey, ArrayList<String> coursesIds){
         ArrayList<AssignmentResponse> assignmentResponses = convertToList(getPreferencesData(activity, settingsKey,courseKey));
         for (AssignmentResponse course : assignmentResponses){
@@ -34,6 +35,8 @@ public class CoursesAssignments {
         return coursesIds;
     }
 
+
+    //Gets the courses IDs
     public ArrayList<String> getCoursesNames (Activity activity, String settingsKey, String courseKey,  ArrayList<String> coursesNames){
         ArrayList<AssignmentResponse> assignmentResponses = convertToList(getPreferencesData(activity, settingsKey,courseKey));
         for (AssignmentResponse course : assignmentResponses){
@@ -42,9 +45,11 @@ public class CoursesAssignments {
         return coursesNames;
     }
 
-    public String getPreferencesData (Activity activity, String settingsKey, String courseKey){
+
+    //Gets data saved in the sharedPreferences
+    public String getPreferencesData (Activity activity, String settingsKey, String dataKey){
         SharedPreferences settings = activity.getSharedPreferences(settingsKey,0);
-        String courses = settings.getString(courseKey,"");
-        return courses;
+        String data = settings.getString(dataKey,"");
+        return data;
     }
 }
