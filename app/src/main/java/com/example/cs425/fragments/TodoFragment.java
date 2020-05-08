@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -45,6 +46,10 @@ public class TodoFragment extends Fragment implements RecyclerViewAdapter.OnCour
     RecyclerView recyclerView;
 
 
+    public static TodoFragment newInstance(String param1, String param2) {
+        TodoFragment fragment = new TodoFragment();
+        return fragment;
+    }
     public TodoFragment() {
     }
 
@@ -98,12 +103,21 @@ public class TodoFragment extends Fragment implements RecyclerViewAdapter.OnCour
     //Initiates the Recycler View
     public   void initRecyclerView(View view, ArrayList<String> coursesNames, ArrayList<String> coursesIds) {
         recyclerView = view.findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(coursesNames, coursesIds, getActivity());
+        RecyclerViewAdapter adapter = new RecyclerViewAdapter(coursesNames, coursesIds, getActivity(), this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }
     @Override
     public void onCourseClick(int position) {
+        String clicked = coursesNames.get(position);
+        String assignmentDetails = new Gson()
+                .toJson(coursesAssignments.getAssignmentDetails(getActivity(),coursesSettingsKey,courseKey,clicked));
 
+        AssignmentFragment assignmentFragment = new AssignmentFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("ASSIGNMENT", assignmentDetails);
+        assignmentFragment.setArguments(bundle);
+
+       getFragmentManager().beginTransaction().replace(R.id.fragment_container,assignmentFragment).commit();
     }
 }
