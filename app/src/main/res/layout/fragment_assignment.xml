@@ -28,6 +28,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
+            android:text="HELLO"
             android:textSize="20dp"
             android:layout_gravity="center"
             app:fontFamily="@font/lato_bold"
@@ -51,5 +52,6 @@
         tools:listitem="@layout/assignment_recycler_items"
         android:id="@+id/recycler_view_ass"
         />
+
 
 </LinearLayout>

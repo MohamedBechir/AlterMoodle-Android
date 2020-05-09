@@ -20,7 +20,7 @@ import com.example.cs425.services.CoursesAssignments;
 import java.util.ArrayList;
 
 
-public class AssignmentFragment extends Fragment {
+public class AssignmentFragment extends Fragment /*implements AssignmentRecyclerViewAdapter.OnAssignmentListener*/ {
     private static final String TAG = "AssignmentFragment";
     RecyclerView recyclerView;
 
@@ -29,6 +29,9 @@ public class AssignmentFragment extends Fragment {
 
     ArrayList <Assignment> assignmentsDetails;
     private ArrayList<String> assignmentsName = new ArrayList<>();
+    ArrayList<String> assignmentsDescription = new ArrayList<>();
+    ArrayList<String> assignmentsDueDate = new ArrayList<>();
+    ArrayList<String> assignmentsStatus = new ArrayList<>();
 
     public static AssignmentFragment newInstance(String param1, String param2) {
         AssignmentFragment fragment = new AssignmentFragment();
@@ -73,6 +76,13 @@ public class AssignmentFragment extends Fragment {
 
             for (Assignment assignment : assignmentsDetails){
                 assignmentsName.add(assignment.getName());
+                assignmentsDescription.add(assignment.getDescription());
+                assignmentsDueDate.add(assignment.getExpDate());
+                if (assignment.getStatus() == true){
+                    assignmentsStatus.add("Done");
+                }else {
+                    assignmentsStatus.add("Pending");
+                }
             }
             //Log.d(TAG, "initAssignments: " + assignmentsName);
 
@@ -83,9 +93,16 @@ public class AssignmentFragment extends Fragment {
 
     public   void initRecyclerView(View view, ArrayList<String> assignmentsName) {
         recyclerView = view.findViewById(R.id.recycler_view_ass);
-        Log.d(TAG, "initRecyclerView: "+ assignmentsName);
-        AssignmentRecyclerViewAdapter adapter = new AssignmentRecyclerViewAdapter(getActivity(), assignmentsName);
+        //Log.d(TAG, "initRecyclerView: "+ assignmentsName);
+        AssignmentRecyclerViewAdapter adapter = new AssignmentRecyclerViewAdapter(getActivity(), assignmentsName,assignmentsDescription
+                , assignmentsDueDate, assignmentsStatus/*, this*/);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }
+
+    /*@Override
+    public void OnAssignmentClick(int position) {
+        Log.d(TAG, "OnAssignmentClick: clicked");
+
+    }*/
 }

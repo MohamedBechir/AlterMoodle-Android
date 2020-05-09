@@ -14,18 +14,16 @@
     <LinearLayout
         android:layout_weight="1"
         android:orientation="vertical"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_width="wrap_content"
         android:background="@drawable/rectangle"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
         >
         >
         <TextView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:textColor="@color/black"
             android:text="Number Of Courses:"
             android:textSize="15dp"
@@ -44,13 +42,11 @@
     <LinearLayout
         android:layout_weight="1"
         android:orientation="vertical"
-        android:layout_height="wrap_content"
+        android:layout_height="80dp"
         android:layout_width="wrap_content"
         android:background="@drawable/rectangle"
-        android:paddingLeft="50dp"
-        android:paddingRight="50dp"
-        android:paddingTop="20dp"
-        android:paddingBottom="20dp"
+        android:paddingLeft="10dp"
+        android:paddingTop="10dp"
         >
         >
         <TextView

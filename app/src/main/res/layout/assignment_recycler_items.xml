@@ -25,10 +25,10 @@
             >
 
             <TextView
-                android:paddingTop="10dp"
+                android:paddingTop="8dp"
                 android:textSize="20dp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="35dp"
                 android:layout_gravity="center"
                 android:textColor="@color/black"
                 android:id="@+id/assignmentName"
@@ -38,12 +38,68 @@
 
             <Button
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="31dp"
                 android:background="@color/primarybst"
                 android:textColor="@color/logintxt"
                 android:text="More details"
                 android:id="@+id/button"
                 />
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="5dp"
+        android:elevation="16dp"
+        android:id="@+id/card2"
+        android:paddingTop="31dp"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:background="@drawable/shadow"
+            >
+
+            <TextView
+                android:paddingTop="8dp"
+                android:textSize="20dp"
+                android:text="Description: Hard assignment"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:id="@+id/description"
+                app:fontFamily="@font/lato_bold"
+                />
+
+            <TextView
+                android:paddingTop="8dp"
+                android:textSize="20dp"
+                android:text="Due date: 26/05/2020"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:id="@+id/duedate"
+                app:fontFamily="@font/lato_bold"
+                />
+            <TextView
+                android:paddingTop="8dp"
+                android:textSize="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="35dp"
+                android:text="Status : Pending"
+                android:layout_gravity="center"
+                android:textColor="@color/black"
+                android:id="@+id/status"
+                app:fontFamily="@font/lato_bold"
+                />
+
 
         </LinearLayout>
 
