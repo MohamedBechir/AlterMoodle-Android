@@ -83,6 +83,7 @@ public class CoursesAssignments {
 
     //Gets data saved in the sharedPreferences
     public String getPreferencesData (Activity activity, String settingsKey, String dataKey){
+        Log.d(TAG, "getPreferencesData: "+ activity.getSharedPreferences(settingsKey,0).getString(dataKey, ""));
         SharedPreferences settings = activity.getSharedPreferences(settingsKey,0);
         String data = settings.getString(dataKey,"");
         return data;

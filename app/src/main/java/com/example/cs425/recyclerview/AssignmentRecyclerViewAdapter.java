@@ -2,7 +2,6 @@ package com.example.cs425.recyclerview;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -61,7 +60,7 @@ public class AssignmentRecyclerViewAdapter extends RecyclerView.Adapter<Assignme
                 holder.dueDate.setText(assignmentsDueDate.get(position));
                 holder.status.setText(assignmentsStatus.get(position));
                 if (assignmentsStatus.get(position) == "Pending"){
-                    holder.status.setBackgroundColor(Color.parseColor("FF0000"));
+                    holder.status.setBackgroundColor(Color.parseColor("#FF0000"));
                 }else {
                     holder.status.setBackgroundColor(Color.parseColor("#2ECC71"));
                 }

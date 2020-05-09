@@ -4,21 +4,37 @@ import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cs425.R;
+import com.example.cs425.recyclerview.StatsRecyclerViewAdapter;
+import com.example.cs425.recyclerview.TodoRecyclerViewAdapter;
+import com.example.cs425.services.CoursesAssignments;
+
+import java.util.ArrayList;
 
 
 public class StatsFragment extends Fragment {
 
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private static final String TAG = "StatsFragment";
+    public static final String coursesSettingsKey = "PREFS";
+    public static final String courseKey = "COURSES";
 
-    private String mParam1;
-    private String mParam2;
+    private ArrayList<String> coursesCodes = new ArrayList<>();
+    private ArrayList<String> coursesNames = new ArrayList<>();
+    private ArrayList<String> coursesOverall = new ArrayList<>();
+
+    RecyclerView recyclerView;
+
+    CoursesAssignments coursesAssignments = new CoursesAssignments();
+
+
 
     public StatsFragment() {
     }
@@ -27,25 +43,42 @@ public class StatsFragment extends Fragment {
     public static StatsFragment newInstance(String param1, String param2) {
         StatsFragment fragment = new StatsFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stats, container, false);
+        View view =inflater.inflate(R.layout.fragment_todo, container, false);
+        initStats(view);
+        return view;
+    }
+
+    private void initStats(View view) {
+        coursesAssignments.getCoursesID(getActivity(),coursesSettingsKey,courseKey,coursesNames);
+
+        coursesAssignments.getCoursesNames(getActivity(),coursesSettingsKey,courseKey,coursesCodes);
+
+        coursesOverall.add("78/100");
+        coursesOverall.add("85/100");
+        coursesOverall.add("90/100");
+        coursesOverall.add("96/100");
+
+
+        initRecyclerView(view, coursesNames, coursesCodes, coursesOverall);
+
+    }
+    public void initRecyclerView(View view, ArrayList<String> coursesNames,
+                                   ArrayList<String> coursesCodes, ArrayList<String> courseOverall) {
+        recyclerView = view.findViewById(R.id.recycler_view);
+        StatsRecyclerViewAdapter adapter = new StatsRecyclerViewAdapter(getActivity(), coursesNames,
+                coursesCodes, courseOverall);
+        recyclerView.setAdapter(adapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }
 }

@@ -41,7 +41,7 @@ public class TodoRecyclerViewAdapter extends RecyclerView.Adapter<TodoRecyclerVi
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
        holder.courseid.setText(coursesIds.get(position));
-       holder.coursename.setText(coursesIds.get(position));
+       holder.coursename.setText(coursesNames.get(position));
     }
 
     @Override
