@@ -42,6 +42,18 @@ public class CoursesAssignments {
         return coursesIds;
     }
 
+    public int calculateNumberOfAssignments (Activity activity, String settingsKey, String courseKey, String clickedItem){
+        int totalAssignments = 0;
+        ArrayList<AssignmentResponse> assignmentResponses = convertToList(getPreferencesData(activity, settingsKey,courseKey));
+        for (AssignmentResponse course : assignmentResponses){
+            if (clickedItem.equals(course.getCourseInfo().getCourseName())){
+                for (Assignment assignment : course.getAssignment()){
+                    totalAssignments +=1;
+                }
+            }
+        }
+        return totalAssignments;
+    }
 
     //Gets the courses IDs
     public ArrayList<String> getCoursesNames (Activity activity, String settingsKey, String courseKey,  ArrayList<String> coursesNames){

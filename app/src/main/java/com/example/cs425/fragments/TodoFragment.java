@@ -5,7 +5,6 @@ import android.os.Bundle;
 
 
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -15,7 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cs425.R;
-import com.example.cs425.RecyclerViewAdapter;
+import com.example.cs425.recyclerview.TodoRecyclerViewAdapter;
 import com.example.cs425.models.AssignmentResponse;
 import com.example.cs425.models.retrofitRequest;
 import com.example.cs425.services.CoursesAssignments;
@@ -30,7 +29,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 
-public class TodoFragment extends Fragment implements RecyclerViewAdapter.OnCourseListener {
+public class TodoFragment extends Fragment implements TodoRecyclerViewAdapter.OnCourseListener {
 
     private static final String TAG = "TodoFragment";
     public static final String coursesSettingsKey = "PREFS";
@@ -80,12 +79,7 @@ public class TodoFragment extends Fragment implements RecyclerViewAdapter.OnCour
             @Override
             public void onResponse(Call<List<AssignmentResponse>> call, Response<List<AssignmentResponse>> response) {
 
-                //Saves courses and assignments info in the sharedPreferences
-                SharedPreferences settings = getActivity().getSharedPreferences(coursesSettingsKey,0);
-                SharedPreferences.Editor editor = settings.edit();
-                String s = new Gson().toJson(response.body());
-                editor.putString("COURSES", s);
-                editor.apply();
+
 
                 coursesAssignments.getCoursesID(getActivity(),coursesSettingsKey,courseKey,coursesNames);
 
@@ -103,7 +97,7 @@ public class TodoFragment extends Fragment implements RecyclerViewAdapter.OnCour
     //Initiates the Recycler View
     public   void initRecyclerView(View view, ArrayList<String> coursesNames, ArrayList<String> coursesIds) {
         recyclerView = view.findViewById(R.id.recycler_view);
-        RecyclerViewAdapter adapter = new RecyclerViewAdapter(coursesNames, coursesIds, getActivity(), this);
+        TodoRecyclerViewAdapter adapter = new TodoRecyclerViewAdapter(coursesNames, coursesIds, getActivity(), this);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }
@@ -113,9 +107,18 @@ public class TodoFragment extends Fragment implements RecyclerViewAdapter.OnCour
         String assignmentDetails = new Gson()
                 .toJson(coursesAssignments.getAssignmentDetails(getActivity(),coursesSettingsKey,courseKey,clicked));
 
+        int totalAssignments = coursesAssignments
+                .calculateNumberOfAssignments(getActivity(),coursesSettingsKey,courseKey,clicked);
+
+        String courseCode = coursesIds.get(position);
+        String totalAssignmentsStr = String.valueOf(totalAssignments);
+
         AssignmentFragment assignmentFragment = new AssignmentFragment();
         Bundle bundle = new Bundle();
+        bundle.putString("COURSECODE", courseCode);
+        bundle.putString("TOTALNUMBER", totalAssignmentsStr);
         bundle.putString("ASSIGNMENT", assignmentDetails);
+
         assignmentFragment.setArguments(bundle);
 
        getFragmentManager().beginTransaction().replace(R.id.fragment_container,assignmentFragment).commit();

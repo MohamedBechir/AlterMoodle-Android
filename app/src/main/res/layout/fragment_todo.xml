@@ -9,10 +9,11 @@
     android:layout_marginRight="15dp"
     android:layout_marginLeft="15dp"
     >
+
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:listitem="@layout/recycler_items"
+        tools:listitem="@layout/todo_recycler_items"
         android:id="@+id/recycler_view"
         />
 

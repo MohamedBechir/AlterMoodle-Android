@@ -10,9 +10,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.cs425.R;
 import com.example.cs425.models.*;
+import com.google.gson.Gson;
 
 import java.util.List;
 
@@ -23,6 +25,8 @@ import retrofit2.Response;
 
 public class DashbordFragment extends Fragment {
     private static final String TAG = "DashbordFragment";
+    public static final String coursesSettingsKey = "PREFS";
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -34,6 +38,14 @@ public class DashbordFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_dashbord, container, false);
         SharedPreferences preferences = getActivity().getSharedPreferences("CS425", Context.MODE_PRIVATE);
         String retrivedToken  = preferences.getString("JWT_TOKEN",null);
         retrofitRequest request = new retrofitRequest();
@@ -43,17 +55,29 @@ public class DashbordFragment extends Fragment {
         CallableResponse.enqueue(new Callback<List<AssignmentResponse>>() {
             @Override
             public void onResponse(Call<List<AssignmentResponse>> call, Response<List<AssignmentResponse>> response) {
+
+
                 int numberAssignments = 0;
                 int numberCourses = 0;
                 for (AssignmentResponse j : response.body()){
-                   if (j.getAssignment()!=null){
-                       numberAssignments += j.getAssignment().size();
-                   }
-                   numberCourses += 1;
+                    if (j.getAssignment()!=null){
+                        numberAssignments += j.getAssignment().size();
+                    }
+                    numberCourses += 1;
                 }
-                Log.d("ASSIGNMENTS","number of assignments is : "+numberAssignments);
-                Log.d("COURSES","number of courses is : "+numberCourses);
 
+                TextView totalnumbercourses = (TextView) view.findViewById(R.id.totalnumbercourses);
+                totalnumbercourses.setText(""+numberCourses);
+                TextView totalnumberass = (TextView) view.findViewById(R.id.totalnumberass);
+                totalnumberass.setText(""+numberAssignments);
+
+                //Saves courses and assignments info in the sharedPreferences
+
+                SharedPreferences settings = getActivity().getSharedPreferences(coursesSettingsKey,0);
+                SharedPreferences.Editor editor = settings.edit();
+                String s = new Gson().toJson(response.body());
+                editor.putString("COURSES", s);
+                editor.apply();
             }
 
             @Override
@@ -63,11 +87,7 @@ public class DashbordFragment extends Fragment {
         });
 
 
-    }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return  inflater.inflate(R.layout.fragment_dashbord, container, false);
+        return view;
     }
 }
