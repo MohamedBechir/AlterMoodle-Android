@@ -20,13 +20,14 @@
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         >
-        >
+
         <TextView
+            android:id="@+id/numbercourses"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:text="Number Of Courses:"
-            android:textSize="15dp"
+            android:text="Total Courses:"
+            android:textSize="20dp"
             app:fontFamily="@font/lato_bold"
             />
         <TextView
@@ -34,7 +35,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="15dp"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
             app:fontFamily="@font/lato_bold"
             />
 
@@ -48,14 +50,14 @@
         android:paddingLeft="10dp"
         android:paddingTop="10dp"
         >
-        >
+
         <TextView
             android:id="@+id/numberass"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
             android:text="Due Assignments:"
-            android:textSize="15dp"
+            android:textSize="20dp"
             app:fontFamily="@font/lato_bold"
             />
         <TextView
@@ -63,7 +65,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/black"
-            android:textSize="15dp"
+            android:textSize="20dp"
+            android:paddingLeft="20dp"
             app:fontFamily="@font/lato_bold"
             />
 

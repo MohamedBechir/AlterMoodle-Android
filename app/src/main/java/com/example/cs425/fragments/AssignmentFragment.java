@@ -76,8 +76,8 @@ public class AssignmentFragment extends Fragment /*implements AssignmentRecycler
 
             for (Assignment assignment : assignmentsDetails){
                 assignmentsName.add(assignment.getName());
-                assignmentsDescription.add(assignment.getDescription());
-                assignmentsDueDate.add(assignment.getExpDate());
+                assignmentsDescription.add("Description: " +assignment.getDescription().substring(3,assignment.getDescription().length()-4));
+                assignmentsDueDate.add("Due Date: " + assignment.getExpDate());
                 if (assignment.getStatus() == true){
                     assignmentsStatus.add("Done");
                 }else {

@@ -68,7 +68,6 @@
             <TextView
                 android:paddingTop="8dp"
                 android:textSize="20dp"
-                android:text="Description: Hard assignment"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
@@ -80,7 +79,6 @@
             <TextView
                 android:paddingTop="8dp"
                 android:textSize="20dp"
-                android:text="Due date: 26/05/2020"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
                 android:layout_gravity="center"
@@ -93,9 +91,8 @@
                 android:textSize="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="35dp"
-                android:text="Status : Pending"
                 android:layout_gravity="center"
-                android:textColor="@color/black"
+                android:textColor="@color/logintxt"
                 android:id="@+id/status"
                 app:fontFamily="@font/lato_bold"
                 />

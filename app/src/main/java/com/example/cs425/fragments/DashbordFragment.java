@@ -67,6 +67,7 @@ public class DashbordFragment extends Fragment {
                 }
 
                 TextView totalnumbercourses = (TextView) view.findViewById(R.id.totalnumbercourses);
+                Log.d(TAG, "onResponse: " + totalnumbercourses);
                 totalnumbercourses.setText(""+numberCourses);
                 TextView totalnumberass = (TextView) view.findViewById(R.id.totalnumberass);
                 totalnumberass.setText(""+numberAssignments);
