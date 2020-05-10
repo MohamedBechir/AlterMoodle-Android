@@ -33,7 +33,6 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
 
     @Override
     protected void onCreate(Bundle  savedInstanceState) {
-        Log.d(TAG, "onCreate: called");
         super.onCreate(savedInstanceState);
         FragmentTransaction tx = getSupportFragmentManager().beginTransaction();
         tx.replace(R.id.fragment_container, new DashbordFragment());

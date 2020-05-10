@@ -7,6 +7,7 @@ import android.util.Log;
 
 import com.example.cs425.models.Assignment;
 import com.example.cs425.models.AssignmentResponse;
+import com.example.cs425.models.GradesResponse;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
@@ -26,6 +27,7 @@ public class CoursesAssignments {
                 fromJson(coursesAssingments.toString(), new TypeToken<List<AssignmentResponse>>(){}.getType());
         return coursesAssingmentsList;
     }
+
 
     public ArrayList<Assignment> convertToListAssignment(String coursesAssingments){
         ArrayList<Assignment> assignmentsDetails = new Gson().
@@ -83,7 +85,6 @@ public class CoursesAssignments {
 
     //Gets data saved in the sharedPreferences
     public String getPreferencesData (Activity activity, String settingsKey, String dataKey){
-        Log.d(TAG, "getPreferencesData: "+ activity.getSharedPreferences(settingsKey,0).getString(dataKey, ""));
         SharedPreferences settings = activity.getSharedPreferences(settingsKey,0);
         String data = settings.getString(dataKey,"");
         return data;

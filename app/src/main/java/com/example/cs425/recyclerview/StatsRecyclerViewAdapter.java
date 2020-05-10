@@ -12,23 +12,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.example.cs425.R;
-import com.example.cs425.fragments.StatsFragment;
+
 
 import java.util.ArrayList;
 
 public class StatsRecyclerViewAdapter extends RecyclerView.Adapter<StatsRecyclerViewAdapter.StatsViewHolder> {
 
      ArrayList<String> coursesCodes = new ArrayList<>();
-     ArrayList<String> coursesNames = new ArrayList<>();
      ArrayList<String> coursesOverall = new ArrayList<>();
+    private ArrayList<String> coursesNames= new ArrayList<>();
     private Context context;
 
-    public StatsRecyclerViewAdapter(Context context, ArrayList<String> coursesCodes, ArrayList<String> coursesNames,
-                                    ArrayList<String> coursesOverall) {
+    public StatsRecyclerViewAdapter(Context context, ArrayList<String> coursesCodes
+            , ArrayList<String> coursesOverall, ArrayList<String> coursesNames) {
         this.context = context;
         this.coursesCodes = coursesCodes;
-        this.coursesNames = coursesNames;
         this.coursesOverall = coursesOverall;
+        this.coursesNames = coursesNames;
     }
 
     @NonNull
@@ -36,7 +36,7 @@ public class StatsRecyclerViewAdapter extends RecyclerView.Adapter<StatsRecycler
     public StatsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.stats_recycler_items,parent,false);
         StatsRecyclerViewAdapter.StatsViewHolder viewHolder = new StatsRecyclerViewAdapter
-                .StatsViewHolder(view/*, onAssignmentListener*/);
+                .StatsViewHolder(view);
         return  viewHolder ;
     }
 
@@ -44,38 +44,42 @@ public class StatsRecyclerViewAdapter extends RecyclerView.Adapter<StatsRecycler
     public void onBindViewHolder(@NonNull StatsViewHolder holder, int position) {
 
         holder.overall.setVisibility(View.GONE);
+        ArrayList<String> clicked = new ArrayList<>();
 
         holder.code.setText(coursesCodes.get(position));
         holder.name.setText(coursesNames.get(position));
         holder.overall.setText(coursesOverall.get(position));
 
+
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               holder.overall.setVisibility(View.VISIBLE);
+                clicked.add(coursesCodes.get(position));
+                holder.overall.setVisibility(View.VISIBLE);
             }
         });
     }
 
     @Override
     public int getItemCount() {
-        return coursesNames.size();
+        return coursesCodes.size();
     }
 
 
     public class StatsViewHolder extends ViewHolder {
 
-        TextView name;
         TextView code;
+        TextView name;
         TextView overall;
 
         public StatsViewHolder(@NonNull View itemView) {
+
             super(itemView);
             code = (TextView) itemView.findViewById(R.id.course_code_stats);
             name = (TextView) itemView.findViewById(R.id.course_name_stats);
             overall = (TextView) itemView.findViewById(R.id.overall);
+
         }
+
     }
-
-
 }

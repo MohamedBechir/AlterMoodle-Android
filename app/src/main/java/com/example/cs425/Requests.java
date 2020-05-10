@@ -1,17 +1,15 @@
 package com.example.cs425;
 
 import com.example.cs425.models.AssignmentResponse;
+import com.example.cs425.models.GradesResponse;
 import com.example.cs425.models.LoginResponse;
 import com.example.cs425.models.registerResponse;
-import com.google.gson.JsonObject;
 
 import org.json.JSONObject;
 
 import java.util.List;
 
-import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Header;
@@ -28,5 +26,8 @@ public interface Requests {
 
     @GET ("assignments")
     Call<List<AssignmentResponse>> getAssignments (@Header("authorization")String jwt);
+
+    @GET ("grades")
+    Call<List<GradesResponse>> getGrades (@Header("authorization")String jwt);
 
 }
