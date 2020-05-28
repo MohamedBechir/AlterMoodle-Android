@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.cs425.R;
 import com.example.cs425.models.Assignment;
@@ -72,6 +73,7 @@ public class StatsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_stats
                 , container, false);
         initStats(view);
+
         return view;
     }
 
@@ -108,7 +110,7 @@ public class StatsFragment extends Fragment {
         int totalNumberAssignments,finishedAssignments = 0, unfinishedAssignments = 0;
 
         totalNumberAssignments = coursesAssignments.calculateNumberOfAssignments(getActivity(), coursesSettingsKey, courseKey);
-        
+
         assignmentsDetails = coursesAssignments.getAssignmentDetails(getActivity(), coursesSettingsKey, courseKey);
 
         for ( Assignment assignment : assignmentsDetails){
@@ -118,8 +120,19 @@ public class StatsFragment extends Fragment {
                 finishedAssignments += 1;
             }
         }
-        Log.d(TAG, "unfinishedAssignments: " + unfinishedAssignments);
-        Log.d(TAG, "finishedAssignments: " + finishedAssignments);
+
+        TextView totalNumberAssignmentsTxt = (TextView) view.findViewById(R.id.totalnumberassignments);
+        Log.d(TAG, "initStats: " + totalNumberAssignments);
+
+        TextView finishedNumberAssignmentsTxt = (TextView) view.findViewById(R.id.finishedAss);
+        Log.d(TAG, "initStats: " + finishedAssignments);
+        TextView unfinishedNumberAssignmentsTxt = (TextView) view.findViewById(R.id.unfinishedAss);
+        Log.d(TAG, "gg: " + unfinishedAssignments);
+
+        totalNumberAssignmentsTxt.setText("" + totalNumberAssignments);
+        finishedNumberAssignmentsTxt.setText("" + finishedAssignments);
+        unfinishedNumberAssignmentsTxt.setText("" + unfinishedAssignments);
+
 
         initRecyclerView(view, coursesCodes, coursesOverall, coursesNames);
 

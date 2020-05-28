@@ -8,4 +8,5 @@
     <color name="colordashbord">#0F273E</color>
     <color name="colorerror">#FF0000</color>
     <color name="black">#000000</color>
+    <color name="green">#228B22</color>
 </resources>
