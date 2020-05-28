@@ -14,9 +14,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cs425.R;
+import com.example.cs425.models.Assignment;
 import com.example.cs425.models.GradesResponse;
 import com.example.cs425.models.retrofitRequest;
 import com.example.cs425.recyclerview.StatsRecyclerViewAdapter;
+import com.example.cs425.services.CoursesAssignments;
 import com.example.cs425.services.Grades;
 import com.google.gson.Gson;
 
@@ -40,10 +42,13 @@ public class StatsFragment extends Fragment {
     private ArrayList<String> coursesCodes = new ArrayList<>();
     private ArrayList<String> coursesOverall = new ArrayList<>();
     private ArrayList<String> coursesNames= new ArrayList<>();
+    private ArrayList<Assignment> assignmentsDetails= new ArrayList<>();
+
 
     RecyclerView recyclerView;
 
     Grades grades = new Grades();
+    CoursesAssignments coursesAssignments = new CoursesAssignments();
 
 
     public StatsFragment() {
@@ -64,7 +69,8 @@ public class StatsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_todo, container, false);
+        View view = inflater.inflate(R.layout.fragment_stats
+                , container, false);
         initStats(view);
         return view;
     }
@@ -99,6 +105,21 @@ public class StatsFragment extends Fragment {
         grades.getCoursesNames(getActivity(), gradesSettingsKey, gradeKey, coursesNames);
 
 
+        int totalNumberAssignments,finishedAssignments = 0, unfinishedAssignments = 0;
+
+        totalNumberAssignments = coursesAssignments.calculateNumberOfAssignments(getActivity(), coursesSettingsKey, courseKey);
+        
+        assignmentsDetails = coursesAssignments.getAssignmentDetails(getActivity(), coursesSettingsKey, courseKey);
+
+        for ( Assignment assignment : assignmentsDetails){
+            if (!assignment.getStatus()){
+                unfinishedAssignments += 1;
+            }else {
+                finishedAssignments += 1;
+            }
+        }
+        Log.d(TAG, "unfinishedAssignments: " + unfinishedAssignments);
+        Log.d(TAG, "finishedAssignments: " + finishedAssignments);
 
         initRecyclerView(view, coursesCodes, coursesOverall, coursesNames);
 

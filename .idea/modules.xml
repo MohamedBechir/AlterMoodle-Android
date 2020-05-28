@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/app/Bechir-Projects-cs425-Android--app.iml" filepath="$PROJECT_DIR$/app/Bechir-Projects-cs425-Android--app.iml" group="cs425/app" />
+      <module fileurl="file://$PROJECT_DIR$/app/Bechir-Projects-cs425-Android--app~1.iml" filepath="$PROJECT_DIR$/app/Bechir-Projects-cs425-Android--app~1.iml" group="cs425/app" />
       <module fileurl="file://$PROJECT_DIR$/app/Projects-cs425-Android--app.iml" filepath="$PROJECT_DIR$/app/Projects-cs425-Android--app.iml" group="cs425/app" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" group="cs425/app" />
       <module fileurl="file://$PROJECT_DIR$/cs425.iml" filepath="$PROJECT_DIR$/cs425.iml" group="cs425" />

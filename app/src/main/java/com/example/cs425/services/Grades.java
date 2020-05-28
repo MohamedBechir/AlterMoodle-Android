@@ -19,12 +19,14 @@ public class Grades {
     public ArrayList<GradesResponse> convertToListGrades(String grades){
         ArrayList<GradesResponse> gradesResponses = new Gson().
                 fromJson(grades.toString(), new TypeToken<List<GradesResponse>>(){}.getType());
+
         return gradesResponses;
     }
 
     public ArrayList<String> getGrades (Activity activity, String settingsKey, String courseKey, ArrayList<String> coursesOverall){
-        ArrayList<GradesResponse> gradesResponses = convertToListGrades(coursesAssignments.getPreferencesData(activity, settingsKey,courseKey));
 
+        ArrayList<GradesResponse> gradesResponses = convertToListGrades(coursesAssignments.getPreferencesData(activity
+                , settingsKey,courseKey));
         for (GradesResponse grade : gradesResponses){
             coursesOverall.add(grade.getGrade());
         }

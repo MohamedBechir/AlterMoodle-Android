@@ -44,18 +44,32 @@ public class CoursesAssignments {
         return coursesIds;
     }
 
-    public int calculateNumberOfAssignments (Activity activity, String settingsKey, String courseKey, String clickedItem){
+
+    public int calculateNumberOfAssignments (Activity activity, String settingsKey, String courseKey){
         int totalAssignments = 0;
+        ArrayList<AssignmentResponse> assignmentResponses = convertToList(getPreferencesData(activity, settingsKey,courseKey));
+        for (AssignmentResponse course : assignmentResponses){
+                for (Assignment assignment : course.getAssignment()) {
+                    totalAssignments += 1;
+                }
+        }
+        Log.d(TAG, "calculateNumberOfAssignments: " + totalAssignments);
+        return totalAssignments;
+    }
+
+    public int calculateNumberOfAssignmentsForEachCourse (Activity activity, String settingsKey, String courseKey, String clickedItem){
+        int totalAssignmentsForEachCourse = 0;
         ArrayList<AssignmentResponse> assignmentResponses = convertToList(getPreferencesData(activity, settingsKey,courseKey));
         for (AssignmentResponse course : assignmentResponses){
             if (clickedItem.equals(course.getCourseInfo().getCourseName())){
                 for (Assignment assignment : course.getAssignment()){
-                    totalAssignments +=1;
+                    totalAssignmentsForEachCourse +=1;
                 }
             }
         }
-        return totalAssignments;
+        return totalAssignmentsForEachCourse;
     }
+
 
     //Gets the courses IDs
     public ArrayList<String> getCoursesNames (Activity activity, String settingsKey, String courseKey,  ArrayList<String> coursesNames){
@@ -68,7 +82,7 @@ public class CoursesAssignments {
 
 
     //Return assignment to specific course with its details
-    public ArrayList<Assignment> getAssignmentDetails (Activity activity, String settingsKey, String courseKey, String clickedItem){
+    public ArrayList<Assignment> getAssignmentDetailsForEachCourse (Activity activity, String settingsKey, String courseKey, String clickedItem){
 
         ArrayList<Assignment> assignmentDetails = new ArrayList<>();
         ArrayList<AssignmentResponse> assignmentResponses = convertToList(getPreferencesData(activity, settingsKey,courseKey));
@@ -78,6 +92,21 @@ public class CoursesAssignments {
                     assignmentDetails.add(assignment);
                 }
             }
+        }
+        return assignmentDetails;
+    }
+
+
+    public ArrayList<Assignment> getAssignmentDetails (Activity activity, String settingsKey, String courseKey){
+
+        ArrayList<Assignment> assignmentDetails = new ArrayList<>();
+        ArrayList<AssignmentResponse> assignmentResponses = convertToList(getPreferencesData(activity, settingsKey,courseKey));
+        for (AssignmentResponse course : assignmentResponses){
+                for (Assignment assignment : course.getAssignment()){
+                    assignmentDetails.add(assignment);
+                    Log.d(TAG, "getAssignmentDetails: " + assignment.getStatus());
+
+                }
         }
         return assignmentDetails;
     }

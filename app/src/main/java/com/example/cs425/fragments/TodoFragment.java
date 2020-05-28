@@ -105,10 +105,10 @@ public class TodoFragment extends Fragment implements TodoRecyclerViewAdapter.On
     public void onCourseClick(int position) {
         String clicked = coursesNames.get(position);
         String assignmentDetails = new Gson()
-                .toJson(coursesAssignments.getAssignmentDetails(getActivity(),coursesSettingsKey,courseKey,clicked));
+                .toJson(coursesAssignments.getAssignmentDetailsForEachCourse(getActivity(),coursesSettingsKey,courseKey,clicked));
 
         int totalAssignments = coursesAssignments
-                .calculateNumberOfAssignments(getActivity(),coursesSettingsKey,courseKey,clicked);
+                .calculateNumberOfAssignmentsForEachCourse(getActivity(),coursesSettingsKey,courseKey,clicked);
 
         String courseCode = coursesIds.get(position);
         String totalAssignmentsStr = String.valueOf(totalAssignments);
