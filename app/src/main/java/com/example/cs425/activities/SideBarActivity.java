@@ -2,7 +2,6 @@ package com.example.cs425.activities;
 
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
@@ -17,10 +16,10 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.example.cs425.R;
 import com.example.cs425.fragments.DashbordFragment;
-import com.example.cs425.fragments.EditorFragment;
 import com.example.cs425.fragments.ProfileFragment;
 import com.example.cs425.fragments.StatsFragment;
 import com.example.cs425.fragments.TodoFragment;
+import com.example.cs425.fragments.UrgentAssignmentFragment;
 import com.google.android.material.navigation.NavigationView;
 
 public class SideBarActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
@@ -95,8 +94,9 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
             case R.id.nav_todo:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new TodoFragment()).commit();
                 break;
-            case R.id.nav_editor:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new EditorFragment()).commit();
+            case R.id.notification:
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new UrgentAssignmentFragment()).commit();
                 break;
             case R.id.nav_account:
                 Bundle bundle = new Bundle();

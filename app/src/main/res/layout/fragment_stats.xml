@@ -14,109 +14,27 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="92dp"
-        android:gravity="start"
         android:orientation="horizontal"
         android:layout_marginRight="6dp"
         android:layout_marginLeft="6dp"
+        android:gravity="center"
         >
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="92dp"
-            android:background="@drawable/rectangle"
-            android:layout_weight="0.3"
-            android:layout_gravity="center"
-            android:orientation="vertical"
-            android:text="@string/app_name"
-            android:textSize="11sp"
-            >
-
-            <TextView
-                android:id="@+id/numbercourses"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Total Assignments:"
-                android:textSize="20dp"
-                android:paddingLeft="8dp"
-                android:paddingTop="4dp"
-                app:fontFamily="@font/lato_bold"
-                />
-            <TextView
-                android:id="@+id/totalnumberassignments"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:layout_gravity="center"
-                app:fontFamily="@font/lato_bold"
-                />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="92dp"
-            android:layout_weight="0.3"
-            android:background="@drawable/rectangle"
-            android:layout_gravity="center"
-            android:text="@string/app_name"
-            android:orientation="vertical"
-            android:textSize="11sp"
-            >
-
-            <TextView
-                android:id="@+id/numberass"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Finished Assignments:"
-                android:textSize="20dp"
-                android:paddingLeft="8dp"
-                android:paddingTop="4dp"
-                app:fontFamily="@font/lato_bold"
-                />
-            <TextView
-                android:id="@+id/finishedAss"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/green"
-                android:textSize="20dp"
-                android:layout_gravity="center"
-                app:fontFamily="@font/lato_bold"
-                />
-
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="0dp"
-            android:layout_height="92dp"
-            android:background="@drawable/rectangle"
-            android:layout_weight="0.3"
-            android:layout_gravity="center"
-            android:text="@string/app_name"
-            android:orientation="vertical"
-            android:textSize="11sp"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/black"
-                android:text="Unfinished Assignments:"
-                android:textSize="20dp"
-                android:paddingLeft="8dp"
-                android:paddingTop="4dp"
-                app:fontFamily="@font/lato_bold"
-                />
-            <TextView
-                android:id="@+id/unfinishedAss"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textColor="@color/colorerror"
-                android:textSize="20dp"
-                android:layout_gravity="center"
-                app:fontFamily="@font/lato_bold"
-                />
-
-        </LinearLayout>
+       <Button
+           android:id="@+id/gradesbtn"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text="Check your grades"
+           app:fontFamily="@font/lato_bold"
+           android:textColor="@color/black"
+           />
+        <Button
+            android:id="@+id/statsbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check your stats"
+            app:fontFamily="@font/lato_bold"
+            android:textColor="@color/black"
+            />
 
     </LinearLayout>
 

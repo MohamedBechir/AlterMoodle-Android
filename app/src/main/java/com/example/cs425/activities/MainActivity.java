@@ -79,8 +79,13 @@ public class MainActivity extends AppCompatActivity {
                                 preferences.edit()
                                         .putString("JWT_TOKEN",response.body().formattedResult().getString("userToken"))
                                         .apply();
+                                Log.d(TAG, "onResponse: " + response.body().getCourses().size());
+                                int numberCourses = response.body().getCourses().size();
 
-                               Intent intent = new Intent(MainActivity.this, SideBarActivity.class);
+                                preferences.edit().putString("COURSESLENGTH", String.valueOf(numberCourses)).apply();
+
+
+                                Intent intent = new Intent(MainActivity.this, SideBarActivity.class);
                                 intent.putExtra("fullName",response.body().formattedResult()
                                         .getString("fullName"));
                                 intent.putExtra("email",response.body().formattedResult()

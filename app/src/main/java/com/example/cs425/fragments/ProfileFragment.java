@@ -1,11 +1,9 @@
 package com.example.cs425.fragments;
 
-import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,11 +26,6 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        /*Log.d("TAG","fullname is :"+ fullName);
-        Log.d("TAG","email is :"+ email);
-        Log.d("TAG","moodle token is :"+ moodleToken);*/
-
     }
 
 
@@ -42,7 +35,8 @@ public class ProfileFragment extends Fragment {
         LayoutInflater lf = getActivity().getLayoutInflater();
         View view =  lf.inflate(R.layout.fragment_profile, container, false); //pass the correct layout name for the fragment
 
-      String  fullName = getArguments().getString("fullName");
+
+        String  fullName = getArguments().getString("fullName");
         String email = getArguments().getString("email");
         String moodleToken = getArguments().getString("moodleToken");
         TextView fullNamefld = (TextView)  view.findViewById(R.id.fullName);

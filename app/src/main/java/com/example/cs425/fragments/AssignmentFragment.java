@@ -6,7 +6,6 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,8 +84,6 @@ public class AssignmentFragment extends Fragment /*implements AssignmentRecycler
                     assignmentsStatus.add("Pending");
                 }
             }
-            //Log.d(TAG, "initAssignments: " + assignmentsName);
-
             initRecyclerView(view,assignmentsName);
 
         }
@@ -94,16 +91,9 @@ public class AssignmentFragment extends Fragment /*implements AssignmentRecycler
 
     public   void initRecyclerView(View view, ArrayList<String> assignmentsName) {
         recyclerView = view.findViewById(R.id.recycler_view_ass);
-        //Log.d(TAG, "initRecyclerView: "+ assignmentsName);
         AssignmentRecyclerViewAdapter adapter = new AssignmentRecyclerViewAdapter(getActivity(), assignmentsName,assignmentsDescription
-                , assignmentsDueDate, assignmentsStatus/*, this*/);
+                , assignmentsDueDate, assignmentsStatus);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
     }
-
-    /*@Override
-    public void OnAssignmentClick(int position) {
-        Log.d(TAG, "OnAssignmentClick: clicked");
-
-    }*/
 }

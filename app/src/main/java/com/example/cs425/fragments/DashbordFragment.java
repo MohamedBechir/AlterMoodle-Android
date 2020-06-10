@@ -45,6 +45,7 @@ public class DashbordFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        getActivity().getSharedPreferences(coursesSettingsKey, 0).edit().clear().commit();
         View view = inflater.inflate(R.layout.fragment_dashbord, container, false);
         SharedPreferences preferences = getActivity().getSharedPreferences("CS425", Context.MODE_PRIVATE);
         String retrivedToken  = preferences.getString("JWT_TOKEN",null);
@@ -56,14 +57,15 @@ public class DashbordFragment extends Fragment {
             @Override
             public void onResponse(Call<List<AssignmentResponse>> call, Response<List<AssignmentResponse>> response) {
 
+                SharedPreferences preferences = getActivity().getSharedPreferences("CS425", Context.MODE_PRIVATE);
 
                 int numberAssignments = 0;
-                int numberCourses = 0;
+                int numberCourses = Integer.parseInt(preferences.getString("COURSESLENGTH", ""));
                 for (AssignmentResponse j : response.body()){
+                    Log.d(TAG, "onResponse: " + j.getCourseInfo().getCourseName());
                     if (j.getAssignment()!=null){
                         numberAssignments += j.getAssignment().size();
                     }
-                    numberCourses += 1;
                 }
 
                 TextView totalnumbercourses = (TextView) view.findViewById(R.id.totalnumbercourses);
@@ -78,6 +80,8 @@ public class DashbordFragment extends Fragment {
                 String s = new Gson().toJson(response.body());
                 editor.putString("COURSES", s);
                 editor.apply();
+                /*Log.d(TAG, "onCreateView: " + getActivity().getSharedPreferences(coursesSettingsKey,0)
+                        .getString("COURSES", ""));*/
             }
 
             @Override

@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.cs425.R;
@@ -45,6 +46,9 @@ public class StatsFragment extends Fragment {
     private ArrayList<String> coursesNames= new ArrayList<>();
     private ArrayList<Assignment> assignmentsDetails= new ArrayList<>();
 
+    private Button statsButton;
+    private Button gradesButton;
+
 
     RecyclerView recyclerView;
 
@@ -73,6 +77,20 @@ public class StatsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_stats
                 , container, false);
         initStats(view);
+        statsButton = (Button) view.findViewById(R.id.statsbtn);
+        statsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: ");
+            }
+        });
+        gradesButton = (Button) view.findViewById(R.id.gradesbtn);
+        gradesButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: hh");
+            }
+        });
 
         return view;
     }
@@ -107,7 +125,7 @@ public class StatsFragment extends Fragment {
         grades.getCoursesNames(getActivity(), gradesSettingsKey, gradeKey, coursesNames);
 
 
-        int totalNumberAssignments,finishedAssignments = 0, unfinishedAssignments = 0;
+      /*  int totalNumberAssignments,finishedAssignments = 0, unfinishedAssignments = 0;
 
         totalNumberAssignments = coursesAssignments.calculateNumberOfAssignments(getActivity(), coursesSettingsKey, courseKey);
 
@@ -131,7 +149,7 @@ public class StatsFragment extends Fragment {
 
         totalNumberAssignmentsTxt.setText("" + totalNumberAssignments);
         finishedNumberAssignmentsTxt.setText("" + finishedAssignments);
-        unfinishedNumberAssignmentsTxt.setText("" + unfinishedAssignments);
+        unfinishedNumberAssignmentsTxt.setText("" + unfinishedAssignments);*/
 
 
         initRecyclerView(view, coursesCodes, coursesOverall, coursesNames);
@@ -145,6 +163,5 @@ public class StatsFragment extends Fragment {
                 coursesCodes, courseOverall, coursesNames);
         recyclerView.setAdapter(adapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(view.getContext()));
-
     }
 }

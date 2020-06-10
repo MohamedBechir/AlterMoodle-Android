@@ -18,9 +18,9 @@
             android:title="TODO"
             app:showAsAction="always" />
         <item
-            android:id="@+id/nav_editor"
-            android:icon="@drawable/ic_edit_black_24dp"
-            android:title="Editor"
+            android:id="@+id/notification"
+            android:icon="@drawable/ic_action_name"
+            android:title="Notifications"
             app:showAsAction="always" />
         <item
             android:id="@+id/nav_account"

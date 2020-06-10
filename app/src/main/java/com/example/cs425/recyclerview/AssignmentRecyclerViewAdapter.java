@@ -25,9 +25,6 @@ public class AssignmentRecyclerViewAdapter extends RecyclerView.Adapter<Assignme
 
     Context context;
 
-    //private OnAssignmentListener onAssignmentListener;
-
-
     public AssignmentRecyclerViewAdapter(Context context, ArrayList<String> assignmentsName, ArrayList<String> assignmentsDescription
             , ArrayList<String> assignmentsDueDate, ArrayList<String> assignmentsStatus) {
         this.assignmentsName = assignmentsName;
@@ -41,7 +38,7 @@ public class AssignmentRecyclerViewAdapter extends RecyclerView.Adapter<Assignme
     @Override
     public AssignmentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.assignment_recycler_items,parent,false);
-        AssignmentViewHolder viewHolder = new AssignmentViewHolder(view/*, onAssignmentListener*/);
+        AssignmentViewHolder viewHolder = new AssignmentViewHolder(view);
         return  viewHolder ;
     }
 
@@ -85,9 +82,6 @@ public class AssignmentRecyclerViewAdapter extends RecyclerView.Adapter<Assignme
         TextView dueDate;
         TextView status;
 
-        //OnAssignmentListener onAssignmentListener;
-
-
         public AssignmentViewHolder(@NonNull View itemView /*, OnAssignmentListener onAssignmentListener*/) {
             super(itemView);
 
@@ -95,20 +89,8 @@ public class AssignmentRecyclerViewAdapter extends RecyclerView.Adapter<Assignme
             description = (TextView) itemView.findViewById(R.id.description);
             dueDate = (TextView) itemView.findViewById(R.id.duedate);
             status = (TextView) itemView.findViewById(R.id.status);
-
-            //this.onAssignmentListener= onAssignmentListener;
-            //itemView.setOnClickListener(this);
         }
     }
 }
 
-      /*  @Override
-        public void onClick(View v) {
-            onAssignmentListener.OnAssignmentClick(getAdapterPosition());
-        }
-    }
-
-    public interface OnAssignmentListener{
-        void OnAssignmentClick(int position);
-    }*/
 
