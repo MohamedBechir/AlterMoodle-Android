@@ -114,6 +114,7 @@ public class TodoFragment extends Fragment implements TodoRecyclerViewAdapter.On
         String totalAssignmentsStr = String.valueOf(totalAssignments);
 
         AssignmentFragment assignmentFragment = new AssignmentFragment();
+
         Bundle bundle = new Bundle();
         bundle.putString("COURSECODE", courseCode);
         bundle.putString("TOTALNUMBER", totalAssignmentsStr);

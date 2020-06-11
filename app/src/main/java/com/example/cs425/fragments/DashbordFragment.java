@@ -62,7 +62,6 @@ public class DashbordFragment extends Fragment {
                 int numberAssignments = 0;
                 int numberCourses = Integer.parseInt(preferences.getString("COURSESLENGTH", ""));
                 for (AssignmentResponse j : response.body()){
-                    Log.d(TAG, "onResponse: " + j.getCourseInfo().getCourseName());
                     if (j.getAssignment()!=null){
                         numberAssignments += j.getAssignment().size();
                     }

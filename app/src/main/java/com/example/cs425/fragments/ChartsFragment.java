@@ -106,7 +106,7 @@ public class ChartsFragment extends Fragment {
         entries.add(new PieEntry(finishedAssignments));
         entries.add(new PieEntry(unfinishedAssignments));
         PieDataSet dataSet = new PieDataSet(entries,"");
-        dataSet.setColors(ColorTemplate.rgb("#FF0000"),ColorTemplate.rgb("#228B22"));
+        dataSet.setColors(ColorTemplate.rgb("#228B22"), ColorTemplate.rgb("#FF0000"));
 
         PieData data = new PieData((dataSet));
         pieChart.setData(data);

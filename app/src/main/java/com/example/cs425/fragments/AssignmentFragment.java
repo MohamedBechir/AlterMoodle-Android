@@ -52,14 +52,6 @@ public class AssignmentFragment extends Fragment /*implements AssignmentRecycler
                              Bundle savedInstanceState) {
         LayoutInflater lf = getActivity().getLayoutInflater();
         View view =  lf.inflate(R.layout.fragment_assignment, container, false);
-        Button assignmentButton = (Button) view.findViewById(R.id.statperassbtn);
-        assignmentButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: hh");
-                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ChartPerCourseFragment()).commit();
-            }
-        });
         initAssignments(view);
         return view ;
     }
@@ -67,10 +59,16 @@ public class AssignmentFragment extends Fragment /*implements AssignmentRecycler
 
     public void initAssignments(View view){
         Bundle bundle = getArguments();
+        String totalAssignments;
         if (bundle!= null){
+
+            totalAssignments = bundle.getString("TOTALNUMBER");
+            String courseCode = bundle.getString("COURSECODE");
+
             String assignments = bundle.getString("ASSIGNMENT");
             assignmentsDetails = coursesAssignments.convertToListAssignment(assignments);
-
+            int finished = 0;
+            int unfinished = 0;
             for (Assignment assignment : assignmentsDetails){
                 assignmentsName.add(assignment.getName());
                 assignmentsDescription.add("Description: " +assignment.getDescription()
@@ -78,10 +76,29 @@ public class AssignmentFragment extends Fragment /*implements AssignmentRecycler
                 assignmentsDueDate.add("Due Date: " + assignment.getExpDate());
                 if (assignment.getStatus() == true){
                     assignmentsStatus.add("Done");
+                    finished += 1;
                 }else {
                     assignmentsStatus.add("Pending");
+                    unfinished += 1;
                 }
             }
+            Button assignmentButton = (Button) view.findViewById(R.id.statperassbtn);
+            int finalUnfinished = unfinished;
+            int finalFinished = finished;
+            assignmentButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    ChartPerCourseFragment chartPerCourseFragment = new ChartPerCourseFragment();
+                    Bundle bundle1 = new Bundle();
+                    bundle1.putString("COURSE", "" + courseCode);
+                    bundle1.putString("ASSIGNMENTS", "" + totalAssignments);
+                    bundle1.putString("FINISHED", "" + finalFinished);
+                    bundle1.putString("UNFINISHED", "" + finalUnfinished);
+                    chartPerCourseFragment.setArguments(bundle1);
+                    getFragmentManager().beginTransaction().replace(R.id.fragment_container,chartPerCourseFragment).commit();
+                }
+            });
+
             initRecyclerView(view,assignmentsName);
 
         }
