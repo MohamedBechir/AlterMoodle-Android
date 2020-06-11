@@ -6,9 +6,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.example.cs425.R;
@@ -50,26 +52,22 @@ public class AssignmentFragment extends Fragment /*implements AssignmentRecycler
                              Bundle savedInstanceState) {
         LayoutInflater lf = getActivity().getLayoutInflater();
         View view =  lf.inflate(R.layout.fragment_assignment, container, false);
+        Button assignmentButton = (Button) view.findViewById(R.id.statperassbtn);
+        assignmentButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "onClick: hh");
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ChartPerCourseFragment()).commit();
+            }
+        });
         initAssignments(view);
         return view ;
     }
 
 
     public void initAssignments(View view){
-
         Bundle bundle = getArguments();
         if (bundle!= null){
-            String totalAssignments = bundle.getString("TOTALNUMBER");
-            String courseCode = bundle.getString("COURSECODE");
-            //Log.d(TAG, "onCreateView: "+ courseCode);
-
-            TextView courseCodeV = (TextView) view.findViewById(R.id.courseCode);
-            courseCodeV.setText(courseCode);
-
-            TextView totalAssignmentsV = (TextView) view.findViewById(R.id.totalnumberass);
-            totalAssignmentsV.setText("Total assignments: "+totalAssignments);
-
-
             String assignments = bundle.getString("ASSIGNMENT");
             assignmentsDetails = coursesAssignments.convertToListAssignment(assignments);
 

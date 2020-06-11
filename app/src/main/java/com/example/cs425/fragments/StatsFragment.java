@@ -35,8 +35,6 @@ import retrofit2.Response;
 public class StatsFragment extends Fragment {
 
     private static final String TAG = "StatsFragment";
-    public static final String coursesSettingsKey = "PREFS";
-    public static final String courseKey = "COURSES";
     public static final String gradesSettingsKey = "GRADES";
     public static final String gradeKey = "GRADESRESPONSE";
 
@@ -44,16 +42,13 @@ public class StatsFragment extends Fragment {
     private ArrayList<String> coursesCodes = new ArrayList<>();
     private ArrayList<String> coursesOverall = new ArrayList<>();
     private ArrayList<String> coursesNames= new ArrayList<>();
-    private ArrayList<Assignment> assignmentsDetails= new ArrayList<>();
 
-    private Button statsButton;
-    private Button gradesButton;
+    private Button chartsButton;
 
 
     RecyclerView recyclerView;
 
     Grades grades = new Grades();
-    CoursesAssignments coursesAssignments = new CoursesAssignments();
 
 
     public StatsFragment() {
@@ -77,21 +72,13 @@ public class StatsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_stats
                 , container, false);
         initStats(view);
-        statsButton = (Button) view.findViewById(R.id.statsbtn);
-        statsButton.setOnClickListener(new View.OnClickListener() {
+        chartsButton = (Button) view.findViewById(R.id.chartsbtn);
+        chartsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d(TAG, "onClick: ");
+                getActivity().getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container,new ChartsFragment()).commit();
             }
         });
-        gradesButton = (Button) view.findViewById(R.id.gradesbtn);
-        gradesButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "onClick: hh");
-            }
-        });
-
         return view;
     }
 
@@ -123,33 +110,6 @@ public class StatsFragment extends Fragment {
         grades.getGrades(getActivity(), gradesSettingsKey, gradeKey, coursesOverall);
         grades.getCoursesCodes(getActivity(), gradesSettingsKey, gradeKey, coursesCodes);
         grades.getCoursesNames(getActivity(), gradesSettingsKey, gradeKey, coursesNames);
-
-
-      /*  int totalNumberAssignments,finishedAssignments = 0, unfinishedAssignments = 0;
-
-        totalNumberAssignments = coursesAssignments.calculateNumberOfAssignments(getActivity(), coursesSettingsKey, courseKey);
-
-        assignmentsDetails = coursesAssignments.getAssignmentDetails(getActivity(), coursesSettingsKey, courseKey);
-
-        for ( Assignment assignment : assignmentsDetails){
-            if (!assignment.getStatus()){
-                unfinishedAssignments += 1;
-            }else {
-                finishedAssignments += 1;
-            }
-        }
-
-        TextView totalNumberAssignmentsTxt = (TextView) view.findViewById(R.id.totalnumberassignments);
-        Log.d(TAG, "initStats: " + totalNumberAssignments);
-
-        TextView finishedNumberAssignmentsTxt = (TextView) view.findViewById(R.id.finishedAss);
-        Log.d(TAG, "initStats: " + finishedAssignments);
-        TextView unfinishedNumberAssignmentsTxt = (TextView) view.findViewById(R.id.unfinishedAss);
-        Log.d(TAG, "gg: " + unfinishedAssignments);
-
-        totalNumberAssignmentsTxt.setText("" + totalNumberAssignments);
-        finishedNumberAssignmentsTxt.setText("" + finishedAssignments);
-        unfinishedNumberAssignmentsTxt.setText("" + unfinishedAssignments);*/
 
 
         initRecyclerView(view, coursesCodes, coursesOverall, coursesNames);

@@ -1,14 +1,281 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ChartsFragment">
+    tools:context=".fragments.ChartsFragment"
+    android:background="@color/logintxt"
+    android:orientation="vertical"
+    android:paddingTop="40dp"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="92dp"
+        android:orientation="horizontal"
+        android:layout_marginRight="6dp"
+        android:layout_marginLeft="6dp"
+        android:gravity="center"
+        >
+        <Button
+            android:id="@+id/gradesbtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check your grades"
+            app:fontFamily="@font/lato_bold"
+            android:textColor="@color/black"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check your stats"
+            app:fontFamily="@font/lato_bold"
+            android:textColor="@color/black"
+            />
 
-</FrameLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="92dp"
+        android:orientation="horizontal"
+        android:layout_marginRight="6dp"
+        android:layout_marginLeft="6dp"
+        android:gravity="center"
+        >
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="92dp"
+        android:background="@drawable/rectangle"
+        android:layout_weight="0.3"
+        android:layout_gravity="center"
+        android:orientation="vertical"
+        android:text="@string/app_name"
+        android:textSize="11sp"
+        >
+
+        <TextView
+            android:id="@+id/numbercourses"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Total Assignments:"
+            android:textSize="20dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="4dp"
+            app:fontFamily="@font/lato_bold"
+            />
+        <TextView
+            android:id="@+id/totalnumberassignments"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            app:fontFamily="@font/lato_bold"
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="92dp"
+        android:layout_weight="0.3"
+        android:background="@drawable/rectangle"
+        android:layout_gravity="center"
+        android:text="@string/app_name"
+        android:orientation="vertical"
+        android:textSize="11sp"
+        >
+
+        <TextView
+            android:id="@+id/numberass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Finished Assignments:"
+            android:textSize="20dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="4dp"
+            app:fontFamily="@font/lato_bold"
+            />
+        <TextView
+            android:id="@+id/finishedAss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/green"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            app:fontFamily="@font/lato_bold"
+
+            />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="92dp"
+        android:background="@drawable/rectangle"
+        android:layout_weight="0.3"
+        android:layout_gravity="center"
+        android:text="@string/app_name"
+        android:orientation="vertical"
+        android:textSize="11sp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="Unfinished Assignments:"
+            android:textSize="20dp"
+            android:paddingLeft="8dp"
+            android:paddingTop="4dp"
+            app:fontFamily="@font/lato_bold"
+            />
+        <TextView
+            android:id="@+id/unfinishedAss"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorerror"
+            android:textSize="20dp"
+            android:layout_gravity="center"
+            app:fontFamily="@font/lato_bold"
+            />
+
+    </LinearLayout>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="35dp"
+        android:layout_gravity="center"
+        >
+        <LinearLayout
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:background="@drawable/rectangle"
+            android:orientation="horizontal"
+            android:gravity="center"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                >
+                <com.github.mikephil.charting.charts.PieChart
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    android:id="@+id/pie"
+                    />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/totalassignments"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_bold"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Total"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/lato_bold"
+                    />
+                <LinearLayout
+                    android:paddingTop="20dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <LinearLayout
+                            android:layout_width="8dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/finishedrect"
+                            >
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            >
+                            <TextView
+                                android:id="@+id/finishedassignments"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="20dp"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/lato_bold"
+                                android:paddingRight="20dp"
+                                android:paddingLeft="10dp"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Finished"
+                                android:textSize="13dp"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/lato_bold"
+                                android:paddingRight="20dp"
+                                android:paddingLeft="10dp"
+                                />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        >
+                        <LinearLayout
+                            android:layout_width="8dp"
+                            android:layout_height="40dp"
+                            android:background="@drawable/unifinishedrect"
+                            >
+                        </LinearLayout>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical"
+                            >
+                            <TextView
+                                android:id="@+id/unfinishedassignments"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="20dp"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/lato_bold"
+                                android:paddingRight="20dp"
+                                android:paddingLeft="10dp"
+                                />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Unfinished"
+                                android:textSize="13dp"
+                                android:textColor="@color/black"
+                                android:fontFamily="@font/lato_bold"
+                                android:paddingRight="20dp"
+                                android:paddingLeft="10dp"
+                                />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
