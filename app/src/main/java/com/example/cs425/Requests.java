@@ -1,6 +1,7 @@
 package com.example.cs425;
 
 import com.example.cs425.models.AssignmentResponse;
+import com.example.cs425.models.CalendarResponse;
 import com.example.cs425.models.GradesResponse;
 import com.example.cs425.models.LoginResponse;
 import com.example.cs425.models.UrgentAssignments;
@@ -37,5 +38,8 @@ public interface Requests {
 
     @GET ("assignments/urgent")
     Call<List<UrgentAssignments>> getUrgentAssignments (@Header("authorization")String jwt);
+
+    @GET ("calendar")
+    Call<CalendarResponse> getCalendar (@Header("authorization")String jwt);
 
 }

@@ -14,8 +14,13 @@ import android.widget.TextView;
 
 import com.example.cs425.R;
 import com.example.cs425.models.*;
+import com.github.tlaabs.timetableview.Schedule;
+import com.github.tlaabs.timetableview.Time;
+import com.github.tlaabs.timetableview.TimetableView;
 import com.google.gson.Gson;
 
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -47,6 +52,44 @@ public class DashbordFragment extends Fragment {
                              Bundle savedInstanceState) {
         getActivity().getSharedPreferences(coursesSettingsKey, 0).edit().clear().commit();
         View view = inflater.inflate(R.layout.fragment_dashbord, container, false);
+        // sets the end of class time (hour,minute)
+
+
+        SharedPreferences preferences1 = getActivity().getSharedPreferences("CS425", Context.MODE_PRIVATE);
+        String jwtToken  = preferences1.getString("JWT_TOKEN",null);
+        retrofitRequest request1 = new retrofitRequest();
+        Call<CalendarResponse> CallableResponse1 = request1
+                .retrofitRequest("http://10.0.2.2:3000/api/misc/")
+                .getCalendar(jwtToken);
+        CallableResponse1.enqueue(new Callback<CalendarResponse>() {
+            @Override
+            public void onResponse(Call<CalendarResponse> call, Response<CalendarResponse> response) {
+                ArrayList<Schedule> schedules = new ArrayList<Schedule>();
+                Schedule schedule = new Schedule();
+                TimetableView timetableView = view.findViewById(R.id.timetable);
+                for (Event event : response.body().getEvents()) {
+                    schedule.setClassTitle(event.getTitle());
+                    schedule.setStartTime(new Time(event.startHour((event.getStart()))
+                            ,event.startMinute((event.getStart()))));
+                    schedule.setEndTime(new Time(event.startHour((event.getEnd()))
+                            ,event.startMinute((event.getEnd()))));
+                    try {
+                        Log.d(TAG, "onResponse: " + event.getDay(event.getStart()));
+                        schedule.setDay(event.getDay(event.getStart()));
+                    } catch (ParseException e) {
+                        e.printStackTrace();
+                    }
+                    schedules.add(schedule);
+                    timetableView.add(schedules);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CalendarResponse> call, Throwable t) {
+                Log.d(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+
         SharedPreferences preferences = getActivity().getSharedPreferences("CS425", Context.MODE_PRIVATE);
         String retrivedToken  = preferences.getString("JWT_TOKEN",null);
         retrofitRequest request = new retrofitRequest();
@@ -67,10 +110,10 @@ public class DashbordFragment extends Fragment {
                     }
                 }
 
-                TextView totalnumbercourses = (TextView) view.findViewById(R.id.totalnumbercourses);
+                /*TextView totalnumbercourses = (TextView) view.findViewById(R.id.totalnumbercourses);
                 totalnumbercourses.setText(""+numberCourses);
                 TextView totalnumberass = (TextView) view.findViewById(R.id.totalnumberass);
-                totalnumberass.setText(""+numberAssignments);
+                totalnumberass.setText(""+numberAssignments);*/
 
                 //Saves courses and assignments info in the sharedPreferences
 

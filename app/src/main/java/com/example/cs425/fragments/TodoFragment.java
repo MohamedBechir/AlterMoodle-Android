@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.cs425.R;
+import com.example.cs425.models.Assignment;
 import com.example.cs425.recyclerview.TodoRecyclerViewAdapter;
 import com.example.cs425.models.AssignmentResponse;
 import com.example.cs425.models.retrofitRequest;
@@ -41,6 +42,7 @@ public class TodoFragment extends Fragment implements TodoRecyclerViewAdapter.On
 
     private ArrayList<String> coursesNames = new ArrayList<>();
     private ArrayList<String> coursesIds = new ArrayList<>();
+    private ArrayList<String> assignmentIds = new ArrayList<>();
 
     RecyclerView recyclerView;
 
@@ -80,12 +82,15 @@ public class TodoFragment extends Fragment implements TodoRecyclerViewAdapter.On
             public void onResponse(Call<List<AssignmentResponse>> call, Response<List<AssignmentResponse>> response) {
 
 
+                for (AssignmentResponse assignment: response.body()) {
+                    assignmentIds.add(assignment.getId());
+                }
 
                 coursesAssignments.getCoursesID(getActivity(),coursesSettingsKey,courseKey,coursesNames);
 
                 coursesAssignments.getCoursesNames(getActivity(),coursesSettingsKey,courseKey,coursesIds);
 
-                initRecyclerView(view, coursesNames, coursesIds);
+                initRecyclerView(view, coursesNames, coursesIds, assignmentIds);
             }
             @Override
             public void onFailure(Call<List<AssignmentResponse>> call, Throwable t) {
@@ -95,7 +100,7 @@ public class TodoFragment extends Fragment implements TodoRecyclerViewAdapter.On
     }
 
     //Initiates the Recycler View
-    public   void initRecyclerView(View view, ArrayList<String> coursesNames, ArrayList<String> coursesIds) {
+    public   void initRecyclerView(View view, ArrayList<String> coursesNames, ArrayList<String> coursesIds, ArrayList<String> assignmentIds) {
         recyclerView = view.findViewById(R.id.recycler_view);
         TodoRecyclerViewAdapter adapter = new TodoRecyclerViewAdapter(coursesNames, coursesIds, getActivity(), this);
         recyclerView.setAdapter(adapter);
@@ -104,13 +109,13 @@ public class TodoFragment extends Fragment implements TodoRecyclerViewAdapter.On
     @Override
     public void onCourseClick(int position) {
         String clicked = coursesNames.get(position);
+        String courseCode = coursesIds.get(position);
+        String assignmentId = assignmentIds.get(position);
+
         String assignmentDetails = new Gson()
                 .toJson(coursesAssignments.getAssignmentDetailsForEachCourse(getActivity(),coursesSettingsKey,courseKey,clicked));
-
         int totalAssignments = coursesAssignments
                 .calculateNumberOfAssignmentsForEachCourse(getActivity(),coursesSettingsKey,courseKey,clicked);
-
-        String courseCode = coursesIds.get(position);
         String totalAssignmentsStr = String.valueOf(totalAssignments);
 
         AssignmentFragment assignmentFragment = new AssignmentFragment();
@@ -119,6 +124,7 @@ public class TodoFragment extends Fragment implements TodoRecyclerViewAdapter.On
         bundle.putString("COURSECODE", courseCode);
         bundle.putString("TOTALNUMBER", totalAssignmentsStr);
         bundle.putString("ASSIGNMENT", assignmentDetails);
+        bundle.putString("ASSIGNMENTID", assignmentId);
 
         assignmentFragment.setArguments(bundle);
 

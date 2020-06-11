@@ -39,6 +39,8 @@ public class UrgentAssignmentFragment extends Fragment {
     ArrayList<String> courseName = new ArrayList<>();
     ArrayList<String> assignmentName = new ArrayList<>();
     ArrayList<String> remainingTime = new ArrayList<>();
+    ArrayList<String> url = new ArrayList<>();
+
     Date currentTime = Calendar.getInstance().getTime();
 
 
@@ -85,6 +87,7 @@ public class UrgentAssignmentFragment extends Fragment {
                 for (UrgentAssignments urgentAssignments : response.body()){
                     courseName.add(urgentAssignments.getCourseCode());
                     assignmentName.add(urgentAssignments.getName());
+                    url.add(urgentAssignments.getUrl());
                     remainingTime.add("Due date is: " + urgentAssignments.getExpDate());
                 }
                 initRecyclerView(view);
@@ -96,10 +99,6 @@ public class UrgentAssignmentFragment extends Fragment {
         });
     }
     public   void initRecyclerView(View view) {
-        Log.d("TAG", "initRecyclerView: " + courseName.size());
-        Log.d("TAG", "initRecyclerView: " + assignmentName.size());
-        Log.d("TAG", "initRecyclerView: " + remainingTime.size());
-
         recyclerView = view.findViewById(R.id.urgent_recycler_view);
         UrgentAssignmentRecyclerViewAdapter adapter = new UrgentAssignmentRecyclerViewAdapter(getActivity(), courseName,
                 assignmentName, remainingTime);

@@ -11,65 +11,15 @@
     android:paddingRight="11dp"
     android:paddingLeft="11dp"
     >
-    <LinearLayout
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_height="80dp"
-        android:layout_width="wrap_content"
-        android:background="@drawable/rectangle"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        >
-
-        <TextView
-            android:id="@+id/numbercourses"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Total Courses:"
-            android:textSize="20dp"
-            app:fontFamily="@font/lato_bold"
-            />
-        <TextView
-            android:id="@+id/totalnumbercourses"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:paddingLeft="20dp"
-            app:fontFamily="@font/lato_bold"
+    <com.github.tlaabs.timetableview.TimetableView
+        android:id="@+id/timetable"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:column_count="6"
+        app:row_count="12"
+        app:header_title="@array/my_header_title"
             />
 
-    </LinearLayout>
-    <LinearLayout
-        android:layout_weight="1"
-        android:orientation="vertical"
-        android:layout_height="80dp"
-        android:layout_width="wrap_content"
-        android:background="@drawable/rectangle"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        >
 
-        <TextView
-            android:id="@+id/numberass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="Due Assignments:"
-            android:textSize="20dp"
-            app:fontFamily="@font/lato_bold"
-            />
-        <TextView
-            android:id="@+id/totalnumberass"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:paddingLeft="20dp"
-            app:fontFamily="@font/lato_bold"
-            />
-
-    </LinearLayout>
 
 </LinearLayout>
