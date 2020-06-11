@@ -79,6 +79,14 @@ public class ChartPerCourseFragment extends Fragment /*implements AssignmentRecy
         TextView totalAssignmentsV = (TextView) view.findViewById(R.id.totalnumberass);
         totalAssignmentsV.setText("Total assignments: " + totalAssignments);
 
+        TextView totalNumberAssignmentsText = (TextView) view.findViewById(R.id.totalassignmentspercourse);
+        TextView finishedNumberAssignmentsText = (TextView) view.findViewById(R.id.finishedassignmentspercourse);
+        TextView unfinishedNumberAssignmentsText = (TextView) view.findViewById(R.id.unfinishedassignmentspercourse);
+
+        totalNumberAssignmentsText.setText("" + totalAssignments);
+        finishedNumberAssignmentsText.setText("" + finished);
+        unfinishedNumberAssignmentsText.setText("" + unfinished);
+
         pieChart = (PieChart) view.findViewById(R.id.pie);
         pieChart.getDescription().setEnabled(false);
         pieChart.setDrawHoleEnabled(true);
@@ -88,9 +96,10 @@ public class ChartPerCourseFragment extends Fragment /*implements AssignmentRecy
         ArrayList<PieEntry> entries = new ArrayList<>();
         entries.add(new PieEntry(finishedInt));
         entries.add(new PieEntry(unfinishedInt));
+        
+
         PieDataSet dataSet = new PieDataSet(entries,"");
         dataSet.setColors(ColorTemplate.rgb("#228B22"), ColorTemplate.rgb("#FF0000"));
-
         PieData data = new PieData((dataSet));
         pieChart.setData(data);
 
