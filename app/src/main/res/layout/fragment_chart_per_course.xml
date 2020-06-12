@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/logintxt"
     android:orientation="vertical"
-    android:paddingTop="40dp"
     tools:context=".fragments.ChartPerCourseFragment">
 
     <LinearLayout
@@ -44,7 +43,7 @@
         android:background="@drawable/rectangle"
         android:paddingLeft="50dp"
         android:paddingRight="50dp"
-        android:paddingTop="20dp"
+        android:paddingTop="8dp"
         android:paddingBottom="20dp"
         >
 

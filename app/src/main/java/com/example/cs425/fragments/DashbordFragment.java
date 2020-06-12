@@ -50,7 +50,7 @@ public class DashbordFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        getActivity().getSharedPreferences(coursesSettingsKey, 0).edit().clear().commit();
+       getActivity().getSharedPreferences(coursesSettingsKey, 0).edit().clear().commit();
         View view = inflater.inflate(R.layout.fragment_dashbord, container, false);
         // sets the end of class time (hour,minute)
 

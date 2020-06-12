@@ -65,10 +65,7 @@ public class SideBarActivity extends AppCompatActivity implements NavigationView
         toggle.syncState();
 
 
-       /* if(savedInstanceState == null) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new DashbordFragment()).commit();
-            navigationView.setCheckedItem(R.id.nav_dashbord);
-        }*/
+
     }
 
     @Override

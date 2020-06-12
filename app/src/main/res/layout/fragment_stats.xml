@@ -7,7 +7,6 @@
     tools:context=".fragments.StatsFragment"
     android:background="@color/logintxt"
     android:orientation="vertical"
-    android:paddingTop="40dp"
     >
 
 
